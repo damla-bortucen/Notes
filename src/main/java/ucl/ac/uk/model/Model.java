@@ -17,7 +17,7 @@ public class Model
     private Map<String, Map<String, Note>> categories;
 
     public Model() {
-        rootFolder = new Folder("root", "Root Index");
+        rootFolder = new Folder("Root Index");
         categories = new HashMap<>();
     }
 
@@ -87,6 +87,12 @@ public class Model
             return findNoteByDFS(subfolder, noteId);
         }
         return null;
+    }
+
+    public void addNote(Note newNote, Folder folder)
+    {
+        folder.addNote(newNote);
+        saveData();
     }
 
     public Map<String, Note> getNotesByCategory(String category) {

@@ -1,7 +1,6 @@
 package ucl.ac.uk.main;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,15 +11,8 @@ public class Note extends Item
     private List<String> categories;
 
     public Note() {
-        super("", ""); // default values for id and name
+        super(""); // default values for id and name
         this.content = "";
-    }
-
-    public Note(String id, String name, String content)
-    {
-        super(id, name);
-        this.content = content;
-        this.categories = new ArrayList<>();
     }
 
     public String getContent()

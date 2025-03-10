@@ -10,13 +10,13 @@ public class Folder extends Item
 
     public Folder() // default constructor
     {
-        super("", "");
+        super("");
         this.subfolders = new HashMap<>();
         this.notes = new HashMap<>();
     }
-    public Folder(String id, String name)
+    public Folder(String name)
     {
-        super(id, name);
+        super(name);
         this.subfolders = new HashMap<>();
         this.notes = new HashMap<>();
     }

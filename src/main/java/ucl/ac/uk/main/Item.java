@@ -1,12 +1,16 @@
 package ucl.ac.uk.main;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public abstract class Item {
     protected final String id;
     protected String name;
 
-    public Item(String id, String name)
+    public Item(String name)
     {
-        this.id = id;
+        String dateTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        this.id = dateTime + "-" + name.replaceAll("\\s+", "_");
         this.name = name;
     }
 
