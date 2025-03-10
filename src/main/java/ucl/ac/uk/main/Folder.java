@@ -14,12 +14,6 @@ public class Folder extends Item
         this.subfolders = new HashMap<>();
         this.notes = new HashMap<>();
     }
-    public Folder(String name)
-    {
-        super(name);
-        this.subfolders = new HashMap<>();
-        this.notes = new HashMap<>();
-    }
 
     public void addFolder(Folder folder)
     {

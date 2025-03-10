@@ -17,7 +17,8 @@ public class Model
     private Map<String, Map<String, Note>> categories;
 
     public Model() {
-        rootFolder = new Folder("Root Index");
+        rootFolder = new Folder();
+        rootFolder.setName("Root Index");
         categories = new HashMap<>();
     }
 
@@ -94,6 +95,13 @@ public class Model
         folder.addNote(newNote);
         saveData();
     }
+
+    public void addFolder(Folder newFolder, Folder parentFolder)
+    {
+        parentFolder.addFolder(newFolder);
+        saveData();
+    }
+
 
     public Map<String, Note> getNotesByCategory(String category) {
         return categories.get(category);
