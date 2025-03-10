@@ -1,0 +1,45 @@
+{
+  "id": "root",
+  "name": "Root Folder",
+  "subfolders": {
+    "folder1": {
+      "id": "folder1",
+      "name": "Work",
+      "notes": {
+        "note4": {
+          "id": "note4",
+          "name": "Project Plan",
+          "content": "This is the project plan for the upcoming release."
+        }
+      }
+    },
+    "folder2": {
+      "id": "folder2",
+      "name": "Personal",
+      "notes": {
+        "note5": {
+          "id": "note5",
+          "name": "Grocery List",
+          "content": "Eggs, Milk, Bread"
+        }
+      }
+    }
+  },
+  "notes": {
+    "note1": {
+      "id": "note1",
+      "name": "Work Meeting Notes",
+      "content": "This is a note for the work meeting on project X."
+    },
+    "note2": {
+      "id": "note2",
+      "name": "Personal Journal",
+      "content": "This is a note for personal journal entry."
+    },
+    "note3": {
+      "id": "note3",
+      "name": "Shopping List",
+      "content": "Items to buy: Apples, Bananas, Oranges."
+    }
+  }
+}
