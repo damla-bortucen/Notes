@@ -9,7 +9,8 @@
         "note4": {
           "id": "note4",
           "name": "Project Plan",
-          "content": "This is the project plan for the upcoming release."
+          "content": "This is the project plan for the upcoming release.",
+          "dateTime": "2025-03-11 12:30:00"
         }
       }
     },
@@ -20,7 +21,8 @@
         "note5": {
           "id": "note5",
           "name": "Grocery List",
-          "content": "Eggs, Milk, Bread"
+          "content": "Eggs, Milk, Bread",
+          "dateTime": "2025-03-11 12:30:00"
         }
       }
     }
@@ -29,17 +31,20 @@
     "note1": {
       "id": "note1",
       "name": "Work Meeting Notes",
-      "content": "This is a note for the work meeting on project X."
+      "content": "This is a note for the work meeting on project X.",
+      "dateTime": "2025-03-11 12:30:00"
     },
     "note2": {
       "id": "note2",
       "name": "Personal Journal",
-      "content": "This is a note for personal journal entry."
+      "content": "This is a note for personal journal entry.",
+      "dateTime": "2025-03-11 12:30:00"
     },
     "note3": {
       "id": "note3",
       "name": "Shopping List",
-      "content": "Items to buy: Apples, Bananas, Oranges."
+      "content": "Items to buy: Apples, Bananas, Oranges.",
+      "dateTime": "2025-03-11 12:30:00"
     }
   }
 }

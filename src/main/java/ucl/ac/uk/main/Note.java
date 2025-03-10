@@ -1,11 +1,14 @@
 package ucl.ac.uk.main;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Note extends Item
 {
     private String content;
+    private String dateTime;
     private List<String> categories;
 
     public Note() {
@@ -40,6 +43,17 @@ public class Note extends Item
         if (!categories.contains(category)) {
             categories.add(category);
         }
+    }
+
+    public String getDateTime()
+    {
+        return dateTime;
+    }
+
+    public void setDateTime()
+    {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        this.dateTime = dateFormat.format(new Date());
     }
 
 }

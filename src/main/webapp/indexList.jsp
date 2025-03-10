@@ -32,7 +32,7 @@
                 Map<String, Note> notes = currentFolder.getNotes();
                 for (Note note : notes.values()) {
         %>
-                    <li><a href="displayServlet?noteId=<%= note.getId() %>"><%= note.getName() %></a></li>
+                    <li><a href="displayNote?noteId=<%= note.getId() %>"><%= note.getName() %></a></li>
         <%
                 }
             }
