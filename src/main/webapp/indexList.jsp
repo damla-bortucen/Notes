@@ -15,7 +15,7 @@
 
 <div class="container">
     <h1>Folders and Notes</h1>
-    <ul>
+    <ul class="list-group">
         <%
             Folder currentFolder = (Folder) request.getAttribute("currentFolder");
 
@@ -24,7 +24,9 @@
                 Map<String, Folder> subfolders = currentFolder.getSubfolders();
                 for (Folder subfolder : subfolders.values()) {
         %>
-                    <li><a href="displayIndex?folderId=<%= subfolder.getId() %>"><%= subfolder.getName() %></a></li>
+                    <li class="list-group-item">
+                        <a href="displayIndex?folderId=<%= subfolder.getId() %>"><%= subfolder.getName() %></a>
+                    </li>
         <%
                 }
 
@@ -32,7 +34,10 @@
                 Map<String, Note> notes = currentFolder.getNotes();
                 for (Note note : notes.values()) {
         %>
-                    <li><a href="displayNote?noteId=<%= note.getId() %>"><%= note.getName() %></a></li>
+                    <li class="list-group-item">
+                        <p><a href="displayNote?noteId=<%= note.getId() %>"><%= note.getName() %></a></p>
+                        <p><%= note.getDateTime() %></p>
+                    </li>
         <%
                 }
             }

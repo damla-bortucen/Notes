@@ -6,14 +6,19 @@ import ucl.ac.uk.main.Note;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class Model
 {
     private Folder rootFolder;
     private static final String FILE_PATH = "data/notes.json";
+    private Map<String, Map<String, Note>> categories;
 
     public Model() {
         rootFolder = new Folder("root", "Root Index");
+        categories = new HashMap<>();
     }
 
     public void readData()
@@ -82,5 +87,12 @@ public class Model
             return findNoteByDFS(subfolder, noteId);
         }
         return null;
+    }
+
+    public Map<String, Note> getNotesByCategory(String category) {
+        return categories.get(category);
+    }
+    public Set<String> getAllCategories() {
+        return categories.keySet();
     }
 }
