@@ -8,7 +8,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import ucl.ac.uk.main.Folder;
-import ucl.ac.uk.main.Note;
 import ucl.ac.uk.model.Model;
 import ucl.ac.uk.model.ModelFactory;
 
@@ -26,13 +25,7 @@ public class SaveNoteServlet extends HttpServlet {
         Model model = ModelFactory.getModel();
         Folder folder = model.getFolder(folderId);
 
-        Note newNote = new Note();
-        newNote.setName(noteName);
-        newNote.setContent(noteContent);
-        newNote.setDateTime();
-        newNote.setParentId(folderId);
-
-        model.addNote(newNote, folder);
+        model.createNote(noteName, noteContent, folderId);
 
         ServletContext context = getServletContext();
         RequestDispatcher dispatch = context.getRequestDispatcher("/index.jsp");

@@ -15,6 +15,7 @@ public class Note extends Item
         super("", ""); // default values for id and name
         this.content = "";
         this.categories = new HashSet<>();
+        setDateTime();
     }
 
     public String getContent()
@@ -38,16 +39,12 @@ public class Note extends Item
 
     public void addCategory(String category)
     {
-        if (!categories.contains(category)) {
-            categories.add(category);
-        }
+        categories.add(category);
     }
 
     public void removeCategory(String category)
     {
-        if (!categories.contains(category)) {
-            categories.add(category);
-        }
+        categories.add(category);
     }
 
     public String getDateTime()

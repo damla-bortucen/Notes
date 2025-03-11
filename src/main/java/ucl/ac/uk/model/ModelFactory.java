@@ -11,6 +11,7 @@ public class ModelFactory
         {
             model = new Model();
             model.readData();
+            System.out.println(model.getRootFolder());
         }
         return model;
     }

@@ -87,23 +87,54 @@ public class Model
         if (currFolder.getNotes().containsKey(noteId)) {
             return currFolder.getNotes().get(noteId);
         }
-        for (Folder subfolder : currFolder.getSubfolders().values())
-        {
-            return findNoteByDFS(subfolder, noteId);
+
+        for (Folder subfolder : currFolder.getSubfolders().values()) {
+            Note foundNote = findNoteByDFS(subfolder, noteId);
+            if (foundNote != null) {
+                return foundNote;
+            }
         }
         return null;
     }
 
-    public void addNote(Note newNote, Folder folder)
+    public void createNote(String noteName, String noteContent, String folderId)
     {
-        folder.addNote(newNote);
-        saveData();
+        Folder folder = getFolder(folderId);
+        if (folder != null) {
+            Note newNote = new Note();
+            newNote.setName(noteName);
+            newNote.setContent(noteContent);
+            newNote.setParentId(folderId);
+            folder.addNote(newNote);
+            saveData();
+        }
     }
 
     public void addFolder(Folder newFolder, Folder parentFolder)
     {
         parentFolder.addFolder(newFolder);
         saveData();
+    }
+
+    public void updateNote(String noteId, String name, String content) {
+        Note note = getNote(noteId);
+
+        note.setName(name);
+        note.setContent(content);
+
+        saveData();
+    }
+
+    public void deleteNote(String noteId) {
+        Note noteToDelete = getNote(noteId);
+
+        if (noteToDelete != null) {
+            Folder parentFolder = findFolderByDFS(rootFolder, noteToDelete.getParentId());
+            if (parentFolder != null) {
+                parentFolder.removeNote(noteId);
+                saveData();
+            }
+        }
     }
 
     public Set<String> getNoteIdsByCategory(String category)
@@ -115,12 +146,5 @@ public class Model
         return categories.keySet();
     }
 
-    public void updateNote(String noteId, String name, String content) {
-        Note note = getNote(noteId);
 
-        note.setName(name);
-        note.setContent(content);
-
-        saveData();
-    }
 }

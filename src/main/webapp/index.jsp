@@ -20,7 +20,6 @@
         <input type="hidden" name="folderId" value="root"/>
         <button class="btn btn-primary btn-lg" type="submit">View Notes</button>
     </form>
-    <a href="categoriesList.jsp" class="btn btn-primary btn-lg">Manage Categories</a>
 </div>
 
 <jsp:include page="/footer.jsp"/>
