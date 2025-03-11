@@ -14,7 +14,8 @@
 <jsp:include page="/header.jsp"/>
 
 <div class="container">
-    <h1>Folders and Notes</h1>
+    <% String title = (String) request.getAttribute("title"); %>
+    <h1><%= title %></h1>
     <ul class="list-group">
         <%
             Folder currentFolder = (Folder) request.getAttribute("currentFolder");

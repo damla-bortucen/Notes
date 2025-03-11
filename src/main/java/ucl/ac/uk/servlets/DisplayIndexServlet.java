@@ -25,11 +25,17 @@ public class DisplayIndexServlet extends HttpServlet
         if (folderId.equals("root")) {
             folderId = model.getRootFolder().getId();
             System.out.println(folderId);
+            request.setAttribute("title", "All Notes and Folders");
         }
 
         Folder folder = model.getFolder(folderId);
 
         request.setAttribute("currentFolder", folder);
+        if (!folderId.equals(model.getRootFolder().getId()))
+        {
+            request.setAttribute("title", folder.getName());
+        }
+
 
         ServletContext context = getServletContext();
         RequestDispatcher dispatch = context.getRequestDispatcher("/indexList.jsp");
