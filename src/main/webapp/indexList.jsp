@@ -43,6 +43,11 @@
                             <input type="hidden" name="noteId" value="<%= note.getId() %>">
                             <button type="submit" class="btn btn-info btn-sm">Edit</button>
                         </form>
+
+                        <form action="deleteNote" method="post" style="display:inline;">
+                            <input type="hidden" name="noteId" value="<%= note.getId() %>">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
                     </li>
         <%
                 }
