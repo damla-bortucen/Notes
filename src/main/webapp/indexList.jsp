@@ -26,7 +26,13 @@
                 for (Folder subfolder : subfolders.values()) {
         %>
                     <li class="list-group-item">
-                        <a href="displayIndex?folderId=<%= subfolder.getId() %>"><%= subfolder.getName() %></a>
+                        <p><a href="displayIndex?folderId=<%= subfolder.getId() %>"><%= subfolder.getName() %></a></p>
+
+                        <form action="deleteFolder" method="post" style="display:inline;">
+                            <input type="hidden" name="folderId" value="<%= subfolder.getId() %>">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+
                     </li>
         <%
                 }

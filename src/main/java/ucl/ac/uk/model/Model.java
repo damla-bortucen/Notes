@@ -129,9 +129,26 @@ public class Model
         Note noteToDelete = getNote(noteId);
 
         if (noteToDelete != null) {
-            Folder parentFolder = findFolderByDFS(rootFolder, noteToDelete.getParentId());
+            Folder parentFolder = getFolder(noteToDelete.getParentId());
             if (parentFolder != null) {
                 parentFolder.removeNote(noteId);
+                saveData();
+            }
+        }
+    }
+
+    public void deleteFolder(String folderId) {
+        Folder folderToDelete = getFolder(folderId);
+
+        if (folderToDelete != null) {
+            Folder parentFolder = getFolder(folderToDelete.getParentId());
+
+            for (String noteId : folderToDelete.getNotes().keySet()) {
+                deleteNote(noteId);
+            }
+
+            if (parentFolder != null) {
+                parentFolder.removeFolder(folderId);
                 saveData();
             }
         }
