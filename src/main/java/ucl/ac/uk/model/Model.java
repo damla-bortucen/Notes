@@ -19,6 +19,7 @@ public class Model
     public Model() {
         rootFolder = new Folder();
         rootFolder.setName("Root Index");
+        rootFolder.setParentId(null);
         categories = new HashMap<>();
     }
 
@@ -66,9 +67,12 @@ public class Model
         if (currFolder.getId().equals(folderId)) {
             return currFolder;
         }
-        for (Folder subfolder : currFolder.getSubfolders().values())
-        {
-            return findFolderByDFS(subfolder, folderId);
+        for (Folder subfolder : currFolder.getSubfolders().values()) {
+
+            Folder found = findFolderByDFS(subfolder, folderId);
+            if (found != null) {  // Only return if the folder was actually found
+                return found;
+            }
         }
         return null;
     }

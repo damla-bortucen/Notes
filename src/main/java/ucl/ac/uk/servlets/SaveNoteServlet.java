@@ -17,7 +17,7 @@ import java.io.IOException;
 @WebServlet("/saveNote")
 public class SaveNoteServlet extends HttpServlet {
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         String folderId = request.getParameter("folderId");
         String noteName = request.getParameter("noteName");
@@ -30,6 +30,7 @@ public class SaveNoteServlet extends HttpServlet {
         newNote.setName(noteName);
         newNote.setContent(noteContent);
         newNote.setDateTime();
+        newNote.setParentId(folderId);
 
         model.addNote(newNote, folder);
 

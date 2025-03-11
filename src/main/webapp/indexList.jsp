@@ -40,6 +40,10 @@
                     </li>
         <%
                 }
+            } else {
+        %>
+           <p>Currently there are no notes.</p>
+        <%
             }
         %>
     </ul>

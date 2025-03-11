@@ -22,6 +22,11 @@ public class DisplayIndexServlet extends HttpServlet
         String folderId = request.getParameter("folderId");
 
         Model model = ModelFactory.getModel();
+        if (folderId.equals("root")) {
+            folderId = model.getRootFolder().getId();
+            System.out.println(folderId);
+        }
+
         Folder folder = model.getFolder(folderId);
 
         request.setAttribute("currentFolder", folder);

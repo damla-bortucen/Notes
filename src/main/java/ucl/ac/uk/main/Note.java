@@ -11,7 +11,7 @@ public class Note extends Item
     private List<String> categories;
 
     public Note() {
-        super(""); // default values for id and name
+        super("", ""); // default values for id and name
         this.content = "";
     }
 

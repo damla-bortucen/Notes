@@ -17,7 +17,7 @@ import java.io.IOException;
 public class SaveFolderServlet extends HttpServlet
 {
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         String parentFolderId = request.getParameter("parentFolderId");
         String folderName = request.getParameter("folderName");
@@ -27,6 +27,7 @@ public class SaveFolderServlet extends HttpServlet
 
         Folder folder = new Folder();
         folder.setName(folderName);
+        folder.setParentId(parentFolderId);
 
         model.addFolder(folder, parent);
 

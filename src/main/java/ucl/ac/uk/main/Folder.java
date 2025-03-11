@@ -10,7 +10,7 @@ public class Folder extends Item
 
     public Folder() // default constructor
     {
-        super("");
+        super("", "");
         this.subfolders = new HashMap<>();
         this.notes = new HashMap<>();
     }
