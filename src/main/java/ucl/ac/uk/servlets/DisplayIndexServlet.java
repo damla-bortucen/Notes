@@ -36,7 +36,6 @@ public class DisplayIndexServlet extends HttpServlet
             request.setAttribute("title", folder.getName());
         }
 
-
         ServletContext context = getServletContext();
         RequestDispatcher dispatch = context.getRequestDispatcher("/indexList.jsp");
         dispatch.forward(request, response);

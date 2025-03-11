@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%@ page import="java.util.Map" %>
 <%@ page import="ucl.ac.uk.main.Folder" %>
 <%@ page import="ucl.ac.uk.main.Note" %>
@@ -6,7 +8,6 @@
 <head>
     <title>Note Taking App</title>
     <jsp:include page="/meta.jsp"/>
-
 </head>
 
 

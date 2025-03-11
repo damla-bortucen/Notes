@@ -1,5 +1,6 @@
 package ucl.ac.uk.model;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ucl.ac.uk.main.Folder;
 import ucl.ac.uk.main.Note;
@@ -14,6 +15,7 @@ public class Model
 {
     private Folder rootFolder;
     private static final String FILE_PATH = "data/notes.json";
+    private static final String CATEGORIES_FILE_PATH = "data/categories.json";
     private Map<String, Set<String>> categories; // category -> noteID
 
     public Model() {
@@ -28,6 +30,7 @@ public class Model
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             File file = new File(FILE_PATH);
+            File categoriesFile = new File(CATEGORIES_FILE_PATH);
 
             if (file.exists()) {
                 rootFolder = objectMapper.readValue(file, Folder.class);
@@ -35,6 +38,14 @@ public class Model
             } else {
                 System.out.println("File not found, starting with an empty root folder.");
             }
+
+            if (categoriesFile.exists()) {
+                categories = objectMapper.readValue(categoriesFile, new TypeReference<>() {});
+                System.out.println("Categories loaded successfully!");
+            } else {
+                System.out.println("Categories file not found, starting fresh.");
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Error reading file: " + e.getMessage());
@@ -46,6 +57,7 @@ public class Model
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.writeValue(new File(FILE_PATH), rootFolder);
+            objectMapper.writeValue(new File(CATEGORIES_FILE_PATH), categories);
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Error saving file: " + e.getMessage());
@@ -105,6 +117,7 @@ public class Model
             newNote.setName(noteName);
             newNote.setContent(noteContent);
             newNote.setParentId(folderId);
+            // TODO currently doesnt do anything with categories
             folder.addNote(newNote);
             saveData();
         }
@@ -116,7 +129,9 @@ public class Model
         saveData();
     }
 
-    public void updateNote(String noteId, String name, String content) {
+    public void updateNote(String noteId, String name, String content)
+    {
+        // TODO currently doesnt do anything with categories
         Note note = getNote(noteId);
 
         note.setName(name);
@@ -132,9 +147,13 @@ public class Model
             Folder parentFolder = getFolder(noteToDelete.getParentId());
             if (parentFolder != null) {
                 parentFolder.removeNote(noteId);
-                saveData();
+            }
+            // remove from categories
+            for (String category : categories.keySet()) {
+                categories.get(category).remove(noteId);
             }
         }
+        saveData();
     }
 
     public void deleteFolder(String folderId) {
