@@ -8,6 +8,7 @@ import ucl.ac.uk.main.Note;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -180,6 +181,15 @@ public class Model
     public Set<String> getAllCategories()
     {
         return categories.keySet();
+    }
+
+    public void addCategory(String name) {
+        if (getAllCategories().contains(name)) {
+            System.out.println("Category already exists: " + name);
+        } else {
+            categories.put(name, new HashSet<>());
+            saveData();
+        }
     }
 
 

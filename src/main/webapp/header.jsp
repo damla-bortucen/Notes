@@ -29,6 +29,7 @@
                 %>
                         <li>No Categories</li>
                 <%  }  %>
+                <li><a href="addCategory.jsp"><strong>Add Category</strong></a></li>
                 </ul>
             </li>
         </ul>
