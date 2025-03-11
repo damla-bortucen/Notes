@@ -2,17 +2,19 @@ package ucl.ac.uk.main;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Note extends Item
 {
     private String content;
     private String dateTime;
-    private List<String> categories;
+    private Set<String> categories;
 
     public Note() {
         super("", ""); // default values for id and name
         this.content = "";
+        this.categories = new HashSet<>();
     }
 
     public String getContent()
@@ -25,12 +27,23 @@ public class Note extends Item
         this.content = content;
     }
 
-    public List<String> getCategories()
+    public Set<String> getCategories()
     {
         return categories;
     }
 
+    public void setCategories(Set<String> categories) {
+        this.categories = categories;
+    }
+
     public void addCategory(String category)
+    {
+        if (!categories.contains(category)) {
+            categories.add(category);
+        }
+    }
+
+    public void removeCategory(String category)
     {
         if (!categories.contains(category)) {
             categories.add(category);

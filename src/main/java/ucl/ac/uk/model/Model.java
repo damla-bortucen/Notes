@@ -14,7 +14,7 @@ public class Model
 {
     private Folder rootFolder;
     private static final String FILE_PATH = "data/notes.json";
-    private Map<String, Map<String, Note>> categories;
+    private Map<String, Set<String>> categories; // category -> noteID
 
     public Model() {
         rootFolder = new Folder();
@@ -106,11 +106,21 @@ public class Model
         saveData();
     }
 
-
-    public Map<String, Note> getNotesByCategory(String category) {
+    public Set<String> getNoteIdsByCategory(String category)
+    {
         return categories.get(category);
     }
-    public Set<String> getAllCategories() {
+    public Set<String> getAllCategories()
+    {
         return categories.keySet();
+    }
+
+    public void updateNote(String noteId, String name, String content) {
+        Note note = getNote(noteId);
+
+        note.setName(name);
+        note.setContent(content);
+
+        saveData();
     }
 }

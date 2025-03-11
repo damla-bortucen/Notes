@@ -38,6 +38,11 @@
                     <li class="list-group-item">
                         <p><a href="displayNote?noteId=<%= note.getId() %>"><%= note.getName() %></a></p>
                         <p><%= note.getDateTime() %></p>
+
+                        <form action="editNote" method="post" style="display:inline;">
+                            <input type="hidden" name="noteId" value="<%= note.getId() %>">
+                            <button type="submit" class="btn btn-info btn-sm">Edit</button>
+                        </form>
                     </li>
         <%
                 }

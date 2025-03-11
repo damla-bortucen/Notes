@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Damla's Notes App</title>
+    <title>Damla&#39;s Notes App</title>
     <jsp:include page="/meta.jsp"/>
 </head>
 
@@ -20,6 +20,7 @@
         <input type="hidden" name="folderId" value="root"/>
         <button class="btn btn-primary btn-lg" type="submit">View Notes</button>
     </form>
+    <a href="categoriesList.jsp" class="btn btn-primary btn-lg">Manage Categories</a>
 </div>
 
 <jsp:include page="/footer.jsp"/>
