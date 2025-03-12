@@ -7,7 +7,9 @@ import ucl.ac.uk.main.Note;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Model
@@ -228,4 +230,47 @@ public class Model
         }
         saveData();
     }
+
+    public List<Note> searchNotes(String searchTerm)
+    {
+        List<Note> resultNotes = new ArrayList<>();
+        searchTerm = searchTerm.toLowerCase();
+
+        for (Note note : rootFolder.getNotes().values()) {
+            if (note.getName().toLowerCase().contains(searchTerm)
+                    || note.getContent().toLowerCase().contains(searchTerm)
+                    || note.getCategories().contains(searchTerm)) {
+                // categories should also be made case-insensitive
+                resultNotes.add(note);
+            }
+        }
+
+        for (Folder folder : rootFolder.getSubfolders().values())
+        {
+            for (Note note : folder.getNotes().values()) {
+                if (note.getName().toLowerCase().contains(searchTerm)
+                        || note.getContent().toLowerCase().contains(searchTerm)
+                        || note.getCategories().contains(searchTerm)) {
+                    resultNotes.add(note);
+                }
+            }
+        }
+        return resultNotes;
+    }
+
+    public List<Folder> searchFolders(String searchTerm)
+    {
+        List<Folder> resultFolders = new ArrayList<>();
+        searchTerm = searchTerm.toLowerCase();
+
+        for (Folder folder : rootFolder.getSubfolders().values())
+        {
+            if (folder.getName().toLowerCase().contains(searchTerm)) {
+                resultFolders.add(folder);
+            }
+        }
+        return resultFolders;
+    }
+
+
 }

@@ -32,6 +32,9 @@
                 <li><a href="addCategory.jsp"><strong>Add Category</strong></a></li>
                 </ul>
             </li>
+
+            <li><a href="search.jsp">Search</a></li>
+
         </ul>
 
     </div>
