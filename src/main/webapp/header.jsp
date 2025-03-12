@@ -18,7 +18,7 @@
                 <ul class="dropdown-menu">
                 <%
                     Model model = ModelFactory.getModel();
-                    Set<String> categories = model.getAllCategories();
+                    Set<String> categories = model.getCategories();
                     if (categories != null) {
                         for (String cat : categories) {
                 %>

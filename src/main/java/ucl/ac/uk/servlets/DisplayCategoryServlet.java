@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import ucl.ac.uk.main.Note;
 import ucl.ac.uk.model.Model;
 import ucl.ac.uk.model.ModelFactory;
 
@@ -24,9 +25,9 @@ public class DisplayCategoryServlet extends HttpServlet
         if (category != null) {
             Model model = ModelFactory.getModel();
 
-            Set<String> notesInCat = model.getNoteIdsByCategory(category);
+            Set<Note> notesInCat = model.getNotesByCategory(category);
 
-            request.setAttribute("noteIds", notesInCat);
+            request.setAttribute("notes", notesInCat);
             request.setAttribute("category", category);
 
             ServletContext context = getServletContext();

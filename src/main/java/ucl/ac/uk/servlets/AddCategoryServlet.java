@@ -21,7 +21,7 @@ public class AddCategoryServlet extends HttpServlet
         String categoryName = request.getParameter("categoryName");
 
         Model model = ModelFactory.getModel();
-        if (model.getAllCategories().contains(categoryName)) {
+        if (model.getCategories().contains(categoryName)) {
             request.setAttribute("error", "Category already exists. Please choose a different name.");
 
             ServletContext context = getServletContext();

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.Set" %>
+<%@ page import="ucl.ac.uk.main.Note" %>
 
 <html>
 <head>
@@ -14,11 +15,15 @@
     <h2>Notes in Category: <%= request.getAttribute("category") %></h2>
     <ul class="list-group">
     <%
-        Set<String> notes = (Set<String>) request.getAttribute("notes");
-        if (notes != null) {
-            for (String noteId : notes) {
+        Set<Note> notes = (Set<Note>) request.getAttribute("notes");
+        if (notes != null && !notes.isEmpty()) {
+            for (Note note : notes) {
+                String noteId = note.getId();
+                String noteName = note.getName();
     %>
-                <li><a href="viewNote?noteId=<%= noteId %>">Note <%= noteId %></a></li>
+                <li class="list-group-item">
+                    <p><a href="displayNote?noteId=<%= noteId %>"><%= noteName %></a></p>
+                </li>
     <%      } %>
     </ul>
     <%

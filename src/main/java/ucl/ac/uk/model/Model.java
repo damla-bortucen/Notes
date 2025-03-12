@@ -7,9 +7,7 @@ import ucl.ac.uk.main.Note;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 public class Model
@@ -17,13 +15,13 @@ public class Model
     private Folder rootFolder;
     private static final String FILE_PATH = "data/notes.json";
     private static final String CATEGORIES_FILE_PATH = "data/categories.json";
-    private Map<String, Set<String>> categories; // category -> noteID
+    private Set<String> categories; // category -> noteID
 
     public Model() {
         rootFolder = new Folder();
         rootFolder.setName("Root Index");
         rootFolder.setParentId(null);
-        categories = new HashMap<>();
+        categories = new HashSet<>();
     }
 
     public void readData()
@@ -149,10 +147,6 @@ public class Model
             if (parentFolder != null) {
                 parentFolder.removeNote(noteId);
             }
-            // remove from categories
-            for (String category : categories.keySet()) {
-                categories.get(category).remove(noteId);
-            }
         }
         saveData();
     }
@@ -174,23 +168,36 @@ public class Model
         }
     }
 
-    public Set<String> getNoteIdsByCategory(String category)
+    public Set<Note> getNotesByCategory(String category)
     {
-        return categories.get(category);
-    }
-    public Set<String> getAllCategories()
-    {
-        return categories.keySet();
+        Set<Note> notesInCategory = new HashSet<>();
+        findNotesInCategory(rootFolder, category, notesInCategory);
+        return notesInCategory;
     }
 
-    public void addCategory(String name) {
-        if (getAllCategories().contains(name)) {
-            System.out.println("Category already exists: " + name);
-        } else {
-            categories.put(name, new HashSet<>());
-            saveData();
+    private void findNotesInCategory(Folder folder, String category, Set<Note> result)
+    {
+        for (Note note : folder.getNotes().values()) {
+            if (note.getCategories().contains(category)) {
+                result.add(note);
+            }
+        }
+        for (Folder subfolder : folder.getSubfolders().values()) {
+            findNotesInCategory(subfolder, category, result);
         }
     }
 
+    public Set<String> getCategories()
+    {
+        return categories;
+    }
 
+    public void addCategory(String category) {
+        if (categories.contains(category)) {
+            System.out.println("Category already exists: " + category);
+        } else {
+            categories.add(category);
+            saveData();
+        }
+    }
 }
