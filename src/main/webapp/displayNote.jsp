@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="ucl.ac.uk.main.Note" %>
+<%@ page import="java.util.Set" %>
 
 <html lang="en">
 <head>
@@ -24,8 +25,28 @@
         <h1><%= note.getName() %></h1>
         <p><strong>Date Created:</strong> <%= note.getDateTime() %></p>
         <p><strong>Content:</strong><br><%= note.getContent().replace("\n", "<br>") %></p>
-        <a href="displayIndex?folderId=root" class="btn btn-primary">Back to Notes List</a>
 
+        <p><strong>Categories:</strong></p>
+        <ul class="list-group">
+            <%
+                Set<String> noteCategories = note.getCategories();
+
+                if (!noteCategories.isEmpty()) {
+                    for (String category : noteCategories) {
+            %>
+                        <li class="list-group-item">
+                            <p><%= category %></p>
+                        </li>
+            <%      }
+                } else {
+            %>
+                    <p>Currently this note is in no categories.</p>
+            <%
+                }
+            %>
+        </ul>
+
+        <a href="displayIndex?folderId=root" class="btn btn-primary">Back to Notes List</a>
         <%
             } else {
         %>
