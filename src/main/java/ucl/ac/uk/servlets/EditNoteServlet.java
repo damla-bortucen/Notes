@@ -12,6 +12,7 @@ import ucl.ac.uk.model.Model;
 import ucl.ac.uk.model.ModelFactory;
 
 import java.io.IOException;
+import java.util.Set;
 
 @WebServlet("/editNote")
 public class EditNoteServlet extends HttpServlet
@@ -22,9 +23,12 @@ public class EditNoteServlet extends HttpServlet
         String noteId = request.getParameter("noteId");
 
         Model model = ModelFactory.getModel();
-        Note noteToEdit = model.getNote(noteId);
 
+        Note noteToEdit = model.getNote(noteId);
         request.setAttribute("noteToEdit", noteToEdit);
+
+        Set<String> categories = model.getCategories();
+        request.setAttribute("categories", categories);
 
         ServletContext context = getServletContext();
         RequestDispatcher dispatch = context.getRequestDispatcher("/editNote.jsp");

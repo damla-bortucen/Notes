@@ -192,12 +192,22 @@ public class Model
         return categories;
     }
 
-    public void addCategory(String category) {
+    public void addCategory(String category)
+    {
         if (categories.contains(category)) {
             System.out.println("Category already exists: " + category);
         } else {
             categories.add(category);
             saveData();
         }
+    }
+
+    public void updateNoteCategories(String noteId, Set<String> newCategories)
+    {
+        Note note = getNote(noteId);
+
+        note.getCategories().clear();
+        note.setCategories(newCategories);
+        saveData(); // Persist changes
     }
 }
