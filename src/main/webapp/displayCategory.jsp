@@ -12,7 +12,17 @@
 <jsp:include page="/header.jsp"/>
 
 <div class="container">
-    <h2>Notes in Category: <%= request.getAttribute("category") %></h2>
+    <%
+        String category = (String) request.getAttribute("category");
+    %>
+    <h2>Notes in Category: <%= category %></h2>
+
+    <form action="deleteCategory" method="post">
+        <input type="hidden" name="category" value="<%= category %>" />
+        <button type="submit" class="btn btn-danger">Delete Category</button>
+    </form>
+
+
     <ul class="list-group">
     <%
         Set<Note> notes = (Set<Note>) request.getAttribute("notes");

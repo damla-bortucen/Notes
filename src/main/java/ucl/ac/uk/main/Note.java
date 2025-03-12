@@ -44,7 +44,7 @@ public class Note extends Item
 
     public void removeCategory(String category)
     {
-        categories.add(category);
+        categories.remove(category);
     }
 
     public String getDateTime()

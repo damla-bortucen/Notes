@@ -210,4 +210,28 @@ public class Model
         note.setCategories(newCategories);
         saveData(); // Persist changes
     }
+
+    public void deleteCategory(String categoryName)
+    {
+        if (categories.contains(categoryName)) {
+            categories.remove(categoryName);
+        }
+
+        // remove category from the root folder's notes
+        for (Note note : rootFolder.getNotes().values()) {
+            if (note.getCategories().contains(categoryName)) {
+                note.removeCategory(categoryName);
+            }
+        }
+
+        // remove category from all notes in subfolders
+        for (Folder folder : rootFolder.getSubfolders().values()) {
+            for (Note note : folder.getNotes().values()) {
+                if (note.getCategories().contains(categoryName)) {
+                    note.removeCategory(categoryName);
+                }
+            }
+        }
+        saveData();
+    }
 }
