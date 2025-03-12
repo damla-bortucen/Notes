@@ -26,13 +26,13 @@ public class UpdateNoteServlet extends HttpServlet
         String[] selectedCategories = request.getParameterValues("categories");
 
         Model model = ModelFactory.getModel();
-        model.updateNote(noteId, name, content);
 
         Set<String> newCategories = new HashSet<>();
         if (selectedCategories != null) {
             Collections.addAll(newCategories, selectedCategories); // make categories a set
         }
-        model.updateNoteCategories(noteId, newCategories);
+
+        model.updateNote(noteId, name, content, newCategories);
 
 
         ServletContext context = getServletContext();

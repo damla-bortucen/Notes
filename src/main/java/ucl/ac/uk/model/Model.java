@@ -116,7 +116,6 @@ public class Model
             newNote.setName(noteName);
             newNote.setContent(noteContent);
             newNote.setParentId(folderId);
-            // TODO currently doesnt do anything with categories
             folder.addNote(newNote);
             saveData();
         }
@@ -128,13 +127,17 @@ public class Model
         saveData();
     }
 
-    public void updateNote(String noteId, String name, String content)
+    public void updateNote(String noteId, String name, String content, Set<String> newCategories)
     {
-        // TODO currently doesnt do anything with categories
         Note note = getNote(noteId);
 
         note.setName(name);
         note.setContent(content);
+
+        if (newCategories != null) {
+            note.getCategories().clear();
+            note.setCategories(newCategories);
+        }
 
         saveData();
     }
@@ -200,15 +203,6 @@ public class Model
             categories.add(category);
             saveData();
         }
-    }
-
-    public void updateNoteCategories(String noteId, Set<String> newCategories)
-    {
-        Note note = getNote(noteId);
-
-        note.getCategories().clear();
-        note.setCategories(newCategories);
-        saveData(); // Persist changes
     }
 
     public void deleteCategory(String categoryName)
