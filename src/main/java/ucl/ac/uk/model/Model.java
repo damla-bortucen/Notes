@@ -239,7 +239,7 @@ public class Model
         for (Note note : rootFolder.getNotes().values()) {
             if (note.getName().toLowerCase().contains(searchTerm)
                     || note.getContent().toLowerCase().contains(searchTerm)
-                    || note.getCategories().contains(searchTerm)) {
+                    || categorySearch(note.getCategories(), searchTerm)) {
                 // categories should also be made case-insensitive
                 resultNotes.add(note);
             }
@@ -250,7 +250,7 @@ public class Model
             for (Note note : folder.getNotes().values()) {
                 if (note.getName().toLowerCase().contains(searchTerm)
                         || note.getContent().toLowerCase().contains(searchTerm)
-                        || note.getCategories().contains(searchTerm)) {
+                        || categorySearch(note.getCategories(), searchTerm)) {
                     resultNotes.add(note);
                 }
             }
@@ -270,6 +270,18 @@ public class Model
             }
         }
         return resultFolders;
+    }
+
+    public boolean categorySearch(Set<String> categories, String searchTerm)
+    {
+        if (categories != null) {
+            for (String category : categories) {
+                if (category.toLowerCase().contains(searchTerm)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 
