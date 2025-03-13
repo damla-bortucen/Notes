@@ -1,21 +1,17 @@
 package ucl.ac.uk.main;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Note extends Item
 {
     private String content;
-    private String dateTime;
     private Set<String> categories;
 
     public Note() {
         super("", ""); // default values for id and name
         this.content = "";
         this.categories = new HashSet<>();
-        setDateTime();
     }
 
     public String getContent()
@@ -46,16 +42,4 @@ public class Note extends Item
     {
         categories.remove(category);
     }
-
-    public String getDateTime()
-    {
-        return dateTime;
-    }
-
-    public void setDateTime()
-    {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        this.dateTime = dateFormat.format(new Date());
-    }
-
 }

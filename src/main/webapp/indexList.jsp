@@ -33,7 +33,7 @@
 
         <input type="hidden" name="folderId" value="<%= currentFolder.getId() %>">
 
-        <label for="sort">Sort Notes By:</label>
+        <label for="sort">Sort By:</label>
         <select class="form-select" name="sort" id="sort">
             <option value="alpha">Alphabetical</option>
             <option value="newest">Newest to Oldest</option>
@@ -53,6 +53,7 @@
         %>
                         <li class="list-group-item">
                             <p><a href="displayIndex?folderId=<%= subfolder.getId() %>"><%= subfolder.getName() %></a></p>
+                            <p>Created: <%= subfolder.getDateTime() %></p>
 
                             <form action="deleteFolder" method="post" style="display:inline;">
                                 <input type="hidden" name="folderId" value="<%= subfolder.getId() %>">
@@ -77,7 +78,7 @@
         %>
                         <li class="list-group-item">
                             <p><a href="displayNote?noteId=<%= note.getId() %>"><%= note.getName() %></a></p>
-                            <p>Date Created: <%= note.getDateTime() %></p>
+                            <p>Created: <%= note.getDateTime() %></p>
 
                             <form action="editNote" method="post" style="display:inline;">
                                 <input type="hidden" name="noteId" value="<%= note.getId() %>">

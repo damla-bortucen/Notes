@@ -307,7 +307,7 @@ public class Model
     public List<Folder> sortFolders(String sort, Map<String, Folder> folders)
     {
         Comparator<Folder> compareByName = (Folder f1, Folder f2) -> (f1.getName().toLowerCase()).compareTo(f2.getName().toLowerCase());
-        //Comparator<Folder> compareByDate = (Folder f1, Folder f2) -> f1.getDateTime().compareTo(f2.getDateTime());
+        Comparator<Folder> compareByDate = (Folder f1, Folder f2) -> f1.getDateTime().compareTo(f2.getDateTime());
 
         List<Folder> folderList = new ArrayList<>(folders.values());
 
@@ -315,11 +315,11 @@ public class Model
             Collections.sort(folderList, compareByName);
         } else if (sort.equals("newest")) {
             // ascending order - smallest to largest (oldest to newest) so REVERSE
-            //Collections.sort(folderList, compareByDate);
-            //Collections.reverse(folderList);
+            Collections.sort(folderList, compareByDate);
+            Collections.reverse(folderList);
         } else {
             // ascending -> oldest to newest
-            //Collections.sort(folderList, compareByDate);
+            Collections.sort(folderList, compareByDate);
         }
 
         return folderList;

@@ -7,11 +7,13 @@ public abstract class Item {
     protected final String id;
     protected String name;
     protected String parentId;
+    protected String dateTime;
 
     public Item(String name, String parentId)
     {
-        String dateTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-        this.id = dateTime + "-" + name.replaceAll("\\s+", "_");
+        // TODO maybe use the setDateTime answer for id generation
+        setDateTime();
+        this.id = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         this.name = name;
         this.parentId = parentId;
     }
@@ -39,6 +41,17 @@ public abstract class Item {
     public void setParentId(String parentId)
     {
         this.parentId = parentId;
+    }
+
+    public String getDateTime()
+    {
+        return dateTime;
+    }
+
+    public void setDateTime()
+    {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        this.dateTime = dateFormat.format(new Date());
     }
 }
 
