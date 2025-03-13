@@ -25,7 +25,6 @@ public class DisplayIndexServlet extends HttpServlet
 
         Model model = ModelFactory.getModel();
 
-        // TODO title for root can't be found when the rootId changes from "root" to numeric value
         if (folderId.equals("root") || folderId.equals(model.getRootFolder().getId())) {
             folderId = model.getRootFolder().getId();
             request.setAttribute("title", "All Notes and Folders");
@@ -40,6 +39,9 @@ public class DisplayIndexServlet extends HttpServlet
         }
 
         String sort = request.getParameter("sort");
+        if (sort == null) {
+            sort = "alpha"; // Default sort if none is specified
+        }
 
         List<Note> sortedNotes = model.sortNotes(sort, folder.getNotes());
         request.setAttribute("sortedNotes", sortedNotes);

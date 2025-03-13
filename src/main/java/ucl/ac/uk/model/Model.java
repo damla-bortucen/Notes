@@ -311,7 +311,7 @@ public class Model
 
         List<Folder> folderList = new ArrayList<>(folders.values());
 
-        if (sort.equals("alpha") || sort == null) {
+        if (sort.equals("alpha")) {
             Collections.sort(folderList, compareByName);
         } else if (sort.equals("newest")) {
             // ascending order - smallest to largest (oldest to newest) so REVERSE
