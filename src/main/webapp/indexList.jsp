@@ -10,9 +10,14 @@
     <title>Note Taking App</title>
     <jsp:include page="/meta.jsp"/>
     <style>
-        .scrollable-notes {
+        .scrollable-list {
             max-height: 30vh; /*30% of the page*/
             overflow-y: auto; /*scrollable if too many notes*/
+        }
+        .button-container {
+            display: inline-flex;
+            gap: 10px; /* Adjust spacing */
+            align-items: center;
         }
     </style>
 </head>
@@ -69,7 +74,7 @@
     </ul>
 
     <h3>Notes</h3>
-    <ul class="list-group scrollable-notes"">
+    <ul class="list-group scrollable-list"">
         <%
                 // Display notes
                 List<Note> sortedNotes = (List<Note>) request.getAttribute("sortedNotes");
@@ -100,16 +105,23 @@
         %>
     </ul>
 
-    <div class="dropdown">
-        <button class="btn btn-success" type="button" data-toggle="dropdown">
-            <span class="glyphicon glyphicon-plus"></span> Add
-        </button>
-        <ul class="dropdown-menu">
-            <li><a href="addItem?folderId=<%= currentFolder.getId() %>&itemType=note">Add Note</a></li>
-            <li><a href="addItem?folderId=<%= currentFolder.getId() %>&itemType=folder">Add Folder</a></li>
-        </ul>
-    </div>
+    <div class="button-container">
+        <div class="dropdown">
+            <button class="btn btn-success" type="button" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-plus"></span> Add
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="addItem?folderId=<%= currentFolder.getId() %>&itemType=note">Add Note</a></li>
+                <li><a href="addItem?folderId=<%= currentFolder.getId() %>&itemType=folder">Add Folder</a></li>
+            </ul>
+        </div>
 
+        <%
+            if (currentFolder.getParentId() != null) {
+        %>
+                <a href="displayIndex?folderId=<%=currentFolder.getParentId()%>" class="btn btn-primary">Back</a>
+        <%  } %>
+    </div>
 </div>
 
 <jsp:include page="/footer.jsp"/>

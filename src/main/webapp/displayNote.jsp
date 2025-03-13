@@ -46,7 +46,7 @@
             %>
         </ul>
 
-        <a href="displayIndex?folderId=root" class="btn btn-primary">Back to Notes List</a>
+        <a href="displayIndex?folderId=<%=note.getParentId()%>" class="btn btn-primary">Back</a>
         <%
             } else {
         %>

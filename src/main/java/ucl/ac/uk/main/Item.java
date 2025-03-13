@@ -11,9 +11,8 @@ public abstract class Item {
 
     public Item(String name, String parentId)
     {
-        // TODO maybe use the setDateTime answer for id generation
         setDateTime();
-        this.id = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        this.id = this.dateTime.replaceAll("[-: .]", "");
         this.name = name;
         this.parentId = parentId;
     }
