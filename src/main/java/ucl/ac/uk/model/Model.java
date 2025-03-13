@@ -7,10 +7,7 @@ import ucl.ac.uk.main.Note;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Model
 {
@@ -282,6 +279,50 @@ public class Model
             }
         }
         return false;
+    }
+
+    public List<Note> sortNotes(String sort, Map<String, Note> notes)
+    {
+        Comparator<Note> compareByName = (Note n1, Note n2) -> (n1.getName().toLowerCase()).compareTo(n2.getName().toLowerCase());
+        Comparator<Note> compareByDate = (Note n1, Note n2) -> n1.getDateTime().compareTo(n2.getDateTime());
+
+        List<Note> notesList = new ArrayList<>(notes.values());
+
+        if (sort != null)
+        {
+            if (sort.equals("alpha")) {
+                Collections.sort(notesList, compareByName);
+            } else if (sort.equals("newest")) {
+                // ascending order - smallest to largest (oldest to newest) so REVERSE
+                Collections.sort(notesList, compareByDate);
+                Collections.reverse(notesList);
+            } else {
+                // ascending -> oldest to newest
+                Collections.sort(notesList, compareByDate);
+            }
+        }
+        return notesList;
+    }
+
+    public List<Folder> sortFolders(String sort, Map<String, Folder> folders)
+    {
+        Comparator<Folder> compareByName = (Folder f1, Folder f2) -> (f1.getName().toLowerCase()).compareTo(f2.getName().toLowerCase());
+        //Comparator<Folder> compareByDate = (Folder f1, Folder f2) -> f1.getDateTime().compareTo(f2.getDateTime());
+
+        List<Folder> folderList = new ArrayList<>(folders.values());
+
+        if (sort.equals("alpha") || sort == null) {
+            Collections.sort(folderList, compareByName);
+        } else if (sort.equals("newest")) {
+            // ascending order - smallest to largest (oldest to newest) so REVERSE
+            //Collections.sort(folderList, compareByDate);
+            //Collections.reverse(folderList);
+        } else {
+            // ascending -> oldest to newest
+            //Collections.sort(folderList, compareByDate);
+        }
+
+        return folderList;
     }
 
 
