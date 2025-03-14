@@ -64,7 +64,6 @@
                                 <input type="hidden" name="folderId" value="<%= subfolder.getId() %>">
                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                             </form>
-
                         </li>
         <%          }
                 } else {

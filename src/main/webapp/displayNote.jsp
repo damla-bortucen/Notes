@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <jsp:include page="/header.jsp"/>
+<jsp:include page="/header.jsp"/>
 
     <div class="container">
         <%
@@ -46,7 +46,16 @@
             %>
         </ul>
 
-        <a href="displayIndex?folderId=<%=note.getParentId()%>" class="btn btn-primary">Back</a>
+        <form action="editNote" method="post" style="display:inline;">
+            <input type="hidden" name="noteId" value="<%= note.getId() %>">
+            <button type="submit" class="btn btn-info">Edit</button>
+        </form>
+
+        <form action="deleteNote" method="post" style="display:inline;">
+            <input type="hidden" name="noteId" value="<%= note.getId() %>">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        <br><br> <a href="displayIndex?folderId=<%=note.getParentId()%>" class="btn btn-primary">Back</a>
         <%
             } else {
         %>

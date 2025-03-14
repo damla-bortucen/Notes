@@ -233,26 +233,26 @@ public class Model
         List<Note> resultNotes = new ArrayList<>();
         searchTerm = searchTerm.toLowerCase();
 
-        for (Note note : rootFolder.getNotes().values()) {
+        searchNotesRecursive(rootFolder, searchTerm, resultNotes);
+        return resultNotes;
+    }
+
+    private void searchNotesRecursive(Folder folder, String searchTerm, List<Note> resultNotes)
+    {
+        for (Note note : folder.getNotes().values())
+        {
             if (note.getName().toLowerCase().contains(searchTerm)
                     || note.getContent().toLowerCase().contains(searchTerm)
                     || categorySearch(note.getCategories(), searchTerm)) {
-                // categories should also be made case-insensitive
                 resultNotes.add(note);
             }
         }
 
-        for (Folder folder : rootFolder.getSubfolders().values())
+        // Recursively search in subfolders
+        for (Folder subfolder : folder.getSubfolders().values())
         {
-            for (Note note : folder.getNotes().values()) {
-                if (note.getName().toLowerCase().contains(searchTerm)
-                        || note.getContent().toLowerCase().contains(searchTerm)
-                        || categorySearch(note.getCategories(), searchTerm)) {
-                    resultNotes.add(note);
-                }
-            }
+            searchNotesRecursive(subfolder, searchTerm, resultNotes);
         }
-        return resultNotes;
     }
 
     public List<Folder> searchFolders(String searchTerm)
@@ -260,13 +260,19 @@ public class Model
         List<Folder> resultFolders = new ArrayList<>();
         searchTerm = searchTerm.toLowerCase();
 
-        for (Folder folder : rootFolder.getSubfolders().values())
-        {
-            if (folder.getName().toLowerCase().contains(searchTerm)) {
-                resultFolders.add(folder);
-            }
-        }
+        searchFoldersRecursive(rootFolder, searchTerm, resultFolders);
         return resultFolders;
+    }
+
+    private void searchFoldersRecursive(Folder folder, String searchTerm, List<Folder> resultFolders)
+    {
+        for (Folder subfolder : folder.getSubfolders().values()) {
+            if (subfolder.getName().toLowerCase().contains(searchTerm)) {
+                resultFolders.add(subfolder);
+            }
+            // search deeper subfolders
+            searchFoldersRecursive(subfolder, searchTerm, resultFolders);
+        }
     }
 
     public boolean categorySearch(Set<String> categories, String searchTerm)
