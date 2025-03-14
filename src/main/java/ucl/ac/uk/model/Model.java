@@ -107,7 +107,7 @@ public class Model
         return null;
     }
 
-    public void createNote(String noteName, String noteContent, String folderId)
+    public void createNote(String noteName, String noteContent, String folderId, Set<String> categories)
     {
         Folder folder = getFolder(folderId);
         if (folder != null) {
@@ -115,6 +115,7 @@ public class Model
             newNote.setName(noteName);
             newNote.setContent(noteContent);
             newNote.setParentId(folderId);
+            newNote.setCategories(categories);
             folder.addNote(newNote);
             saveData();
         }

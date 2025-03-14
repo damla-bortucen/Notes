@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<%@ page import="java.util.Set" %>
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -24,6 +26,17 @@
         <div class="form-group">
             <label for="content">Note Content:</label>
             <textarea class="form-control" rows="15" id="content" name="content" placeholder="Write your notes here..." autofocus="1"></textarea>
+        </div>
+
+        <div class="form-check">
+            <label for="noteCategories">Categories:</label>
+            <%
+                Set<String> categories = (Set<String>) request.getAttribute("categories");
+                for (String category : categories) {
+            %>
+                    <input class="form-check-input" type="checkbox" id="<%= category %>" name="noteCategories" value="<%= category %>">
+                    <label class="form-check-label"><%= category %></label>
+            <%  } %>
         </div>
 
         <input class="form-control btn-success" type="submit" value="Save">
