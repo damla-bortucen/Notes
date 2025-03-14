@@ -25,6 +25,7 @@
 
         <div class="form-group">
             <label for="content">Note Content:</label>
+
             <textarea class="form-control" rows="15" id="content" name="content" placeholder="Write your notes here..." autofocus="1"></textarea>
         </div>
 
