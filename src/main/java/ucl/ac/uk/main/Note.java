@@ -1,16 +1,18 @@
 package ucl.ac.uk.main;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Note extends Item
 {
-    private String content;
+    private List<Content> content;
     private Set<String> categories;
 
     public Note() {
         super("", ""); // default values for id and name
-        this.content = "";
+        this.content = new ArrayList<>();
         this.categories = new HashSet<>();
     }
 
