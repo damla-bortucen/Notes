@@ -24,7 +24,7 @@
 
                 <h1><%= note.getName() %></h1>
                 <p><strong>Date Created:</strong> <%= note.getDateTime() %></p>
-                <p><strong>Content:</strong><br><%= note.getContent().replace("\n", "<br>") %></p>
+                <p><strong>Content:</strong><br><%= note.formatContent().replace("\n", "<br>") %></p>
 
         <%
                 String imagePath = note.getImagePath();

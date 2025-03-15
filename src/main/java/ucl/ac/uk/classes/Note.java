@@ -2,6 +2,8 @@ package ucl.ac.uk.classes;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Note extends Item
 {
@@ -20,6 +22,22 @@ public class Note extends Item
     public String getContent() {return content;}
 
     public void setContent(String content) {this.content = content;}
+
+    public String formatContent()
+    {
+        String urlRegex = "(https?://[\\w./-]+)";
+        Pattern pattern = Pattern.compile(urlRegex);
+        Matcher matcher = pattern.matcher(content);
+
+        StringBuffer sb = new StringBuffer();
+        while (matcher.find()) {
+            String url = matcher.group(); //Returns the input subsequence matched by the previous match.
+            System.out.println(url);
+            matcher.appendReplacement(sb, "<a href='" + url + "' target='_blank'>" + url + "</a>");
+        }
+        matcher.appendTail(sb);
+        return sb.toString();
+    }
 
     public Set<String> getCategories() {return categories;}
 
