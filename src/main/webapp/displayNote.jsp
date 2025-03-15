@@ -22,9 +22,16 @@
             if (note != null) {
         %>
 
-        <h1><%= note.getName() %></h1>
-        <p><strong>Date Created:</strong> <%= note.getDateTime() %></p>
-        <p><strong>Content:</strong><br><%= note.getContent().replace("\n", "<br>") %></p>
+                <h1><%= note.getName() %></h1>
+                <p><strong>Date Created:</strong> <%= note.getDateTime() %></p>
+                <p><strong>Content:</strong><br><%= note.getContent().replace("\n", "<br>") %></p>
+
+        <%
+                String imagePath = note.getImagePath();
+                if (imagePath != null && !imagePath.isEmpty()) {
+        %>
+                    <img src="<%= imagePath %>">
+        <%      } %>
 
         <p><strong>Categories:</strong></p>
         <ul class="list-group">

@@ -14,7 +14,7 @@ public class Note extends Item
         super("", ""); // default values for id and name
         this.content = "";
         this.categories = new HashSet<>();
-        this.imagePath = "";
+        this.imagePath = null;
     }
 
     public String getContent() {return content;}

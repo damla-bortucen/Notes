@@ -122,7 +122,6 @@ public class Model
             if (imagePart!=null) {
                 String imagePath = saveImage(imagePart);
                 newNote.setImagePath(imagePath);
-                System.out.println("Saved image: " + imagePath);
             }
 
             folder.addNote(newNote);
@@ -138,7 +137,6 @@ public class Model
             String absoluteDir = new File(IMAGES_PATH).getAbsolutePath();
 
             String filePath = absoluteDir + File.separator + imageName;
-            System.out.println("Attempting to save image at: " + filePath);
             imagePart.write(filePath);
             return (filePath);
         } catch (IOException e) {
@@ -154,7 +152,7 @@ public class Model
         saveData();
     }
 
-    public void updateNote(String noteId, String name, String content, Set<String> newCategories)
+    public void updateNote(String noteId, String name, String content, Set<String> newCategories, Part imagePart)
     {
         Note note = getNote(noteId);
 
@@ -166,7 +164,24 @@ public class Model
             note.setCategories(newCategories);
         }
 
+        if (imagePart != null) {
+            String imagePath = saveImage(imagePart);
+            // delete old image
+            removeImage(note.getId());
+            note.setImagePath(imagePath);
+        }
+
         saveData();
+    }
+
+    public void removeImage(String noteId) {
+        Note note = getNote(noteId);
+        String oldImagePath = note.getImagePath();
+        if (oldImagePath != null) {
+            File oldImageFile = new File(oldImagePath);
+            oldImageFile.delete();
+            note.setImagePath(null);
+        }
     }
 
     public void deleteNote(String noteId) {
@@ -176,6 +191,9 @@ public class Model
             Folder parentFolder = getFolder(noteToDelete.getParentId());
             if (parentFolder != null) {
                 parentFolder.removeNote(noteId);
+            }
+            if (noteToDelete.getImagePath() != null) {
+                removeImage(noteToDelete.getId());
             }
         }
         saveData();

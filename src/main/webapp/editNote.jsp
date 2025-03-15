@@ -24,7 +24,7 @@
     <%
         } else {
     %>
-    <form method="POST" action="updateNote">
+    <form method="POST" action="updateNote" enctype="multipart/form-data">
 
         <div class="form-group">
           <label for="newName">Note Name:</label>
@@ -36,6 +36,28 @@
             <label for="content">Make Changes:</label>
             <textarea class="form-control" rows="10" id="content" name="content"><%= noteToEdit.getContent() %></textarea>
         </div>
+
+        <h3>Current Image:</h3>
+            <div>
+                <%
+                    String imagePath = noteToEdit.getImagePath();
+                    if (imagePath != null && !imagePath.isEmpty()) {
+                %>
+                        <img src="<%= imagePath %>">
+                        <p>Currently selected image</p>
+                        <label for="removeImage">Remove current image</label>
+                        <input type="checkbox" id="removeImage" name="removeImage">
+                <%
+                    } else {
+                %>
+                        <p>No image uploaded for this note.</p>
+                <%
+                    }
+                %>
+            </div>
+                <h3>Upload a New Image:</h3>
+                <input type="file" name="image" class="form-control">
+                <br>
 
         <div class="form-check">
             <label for="categories">Categories:</label>
