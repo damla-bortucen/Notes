@@ -3,10 +3,12 @@ package ucl.ac.uk.servlets;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 import ucl.ac.uk.classes.Folder;
 import ucl.ac.uk.model.Model;
 import ucl.ac.uk.model.ModelFactory;
@@ -17,6 +19,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 @WebServlet("/saveNote")
+@MultipartConfig(
+        fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
+        maxFileSize = 1024 * 1024 * 10,      // 10 MB
+        maxRequestSize = 1024 * 1024 * 100   // 100 MB
+)
 public class SaveNoteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -26,6 +33,8 @@ public class SaveNoteServlet extends HttpServlet {
         String noteContent = request.getParameter("content");
         String[] selectedCategories = request.getParameterValues("noteCategories");
 
+        Part imagePart = request.getPart("image");
+
         Set<String> categories = new HashSet<>();
         if (selectedCategories != null) {
             Collections.addAll(categories, selectedCategories); // make categories a set
@@ -34,7 +43,7 @@ public class SaveNoteServlet extends HttpServlet {
         Model model = ModelFactory.getModel();
         Folder folder = model.getFolder(folderId);
 
-        model.createNote(noteName, noteContent, folderId, categories);
+        model.createNote(noteName, noteContent, folderId, categories, imagePart);
 
         ServletContext context = getServletContext();
         RequestDispatcher dispatch = context.getRequestDispatcher("/index.jsp");

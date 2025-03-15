@@ -14,7 +14,7 @@
 
 <div class="container">
     <h1>Start Taking Notes:</h1>
-    <form method="POST" action="/saveNote">
+    <form method="post" action="/saveNote" enctype="multipart/form-data">
 
         <input type="hidden" name="folderId" value="<%= request.getParameter("folderId") %>">
 
@@ -25,8 +25,11 @@
 
         <div class="form-group">
             <label for="content">Note Content:</label>
-
             <textarea class="form-control" rows="15" id="content" name="content" placeholder="Write your notes here..." autofocus="1"></textarea>
+        </div>
+
+        <div class="form-group">
+            <input type="file" name="image">
         </div>
 
         <div class="form-check">

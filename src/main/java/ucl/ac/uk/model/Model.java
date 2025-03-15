@@ -2,6 +2,7 @@ package ucl.ac.uk.model;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.http.Part;
 import ucl.ac.uk.classes.Folder;
 import ucl.ac.uk.classes.Note;
 
@@ -14,6 +15,7 @@ public class Model
     private Folder rootFolder;
     private static final String FILE_PATH = "data/notes.json";
     private static final String CATEGORIES_FILE_PATH = "data/categories.json";
+    private static final String IMAGES_PATH = "data/images/";
     private Set<String> categories; // category -> noteID
 
     public Model() {
@@ -107,7 +109,7 @@ public class Model
         return null;
     }
 
-    public void createNote(String noteName, String noteContent, String folderId, Set<String> categories)
+    public void createNote(String noteName, String noteContent, String folderId, Set<String> categories, Part imagePart)
     {
         Folder folder = getFolder(folderId);
         if (folder != null) {
@@ -116,9 +118,34 @@ public class Model
             newNote.setContent(noteContent);
             newNote.setParentId(folderId);
             newNote.setCategories(categories);
+
+            if (imagePart!=null) {
+                String imagePath = saveImage(imagePart);
+                newNote.setImagePath(imagePath);
+                System.out.println("Saved image: " + imagePath);
+            }
+
             folder.addNote(newNote);
             saveData();
         }
+    }
+
+    private String saveImage(Part imagePart)
+    {
+        try {
+            String imageName = imagePart.getSubmittedFileName();
+
+            String absoluteDir = new File(IMAGES_PATH).getAbsolutePath();
+
+            String filePath = absoluteDir + File.separator + imageName;
+            System.out.println("Attempting to save image at: " + filePath);
+            imagePart.write(filePath);
+            return (filePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error saving image" + e.getMessage());
+        }
+        return null;
     }
 
     public void addFolder(Folder newFolder, Folder parentFolder)

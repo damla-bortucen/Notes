@@ -7,39 +7,29 @@ public class Note extends Item
 {
     private String content;
     private Set<String> categories;
+    private String imagePath;
 
-    public Note() {
+    public Note()
+    {
         super("", ""); // default values for id and name
         this.content = "";
         this.categories = new HashSet<>();
+        this.imagePath = "";
     }
 
-    public String getContent()
-    {
-        return content;
-    }
+    public String getContent() {return content;}
 
-    public void setContent(String content)
-    {
-        this.content = content;
-    }
+    public void setContent(String content) {this.content = content;}
 
-    public Set<String> getCategories()
-    {
-        return categories;
-    }
+    public Set<String> getCategories() {return categories;}
 
-    public void setCategories(Set<String> categories) {
-        this.categories = categories;
-    }
+    public void setCategories(Set<String> categories) {this.categories = categories;}
 
-    public void addCategory(String category)
-    {
-        categories.add(category);
-    }
+    public void addCategory(String category) {categories.add(category);}
 
-    public void removeCategory(String category)
-    {
-        categories.remove(category);
-    }
+    public void removeCategory(String category) {categories.remove(category);}
+
+    public String getImagePath() {return imagePath;}
+
+    public void setImagePath(String imagePath) {this.imagePath = imagePath;}
 }
