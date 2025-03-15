@@ -2,8 +2,8 @@
 
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.List" %>
-<%@ page import="ucl.ac.uk.main.Folder" %>
-<%@ page import="ucl.ac.uk.main.Note" %>
+<%@ page import="ucl.ac.uk.classes.Folder" %>
+<%@ page import="ucl.ac.uk.classes.Note" %>
 
 <html>
 <head>

@@ -1,4 +1,4 @@
-package ucl.ac.uk.main;
+package ucl.ac.uk.classes;
 
 import java.util.HashSet;
 import java.util.Set;

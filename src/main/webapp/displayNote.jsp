@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="ucl.ac.uk.main.Note" %>
+<%@ page import="ucl.ac.uk.classes.Note" %>
 <%@ page import="java.util.Set" %>
 
 <html lang="en">

@@ -1,4 +1,4 @@
-package ucl.ac.uk.main;
+package ucl.ac.uk.classes;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

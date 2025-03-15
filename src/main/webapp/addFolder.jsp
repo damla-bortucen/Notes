@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%@ page import="ucl.ac.uk.main.Folder" %>
+<%@ page import="ucl.ac.uk.classes.Folder" %>
 <%@ page import="java.util.Set" %>
 
 <html>

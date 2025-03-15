@@ -2,8 +2,8 @@ package ucl.ac.uk.model;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ucl.ac.uk.main.Folder;
-import ucl.ac.uk.main.Note;
+import ucl.ac.uk.classes.Folder;
+import ucl.ac.uk.classes.Note;
 
 import java.io.File;
 import java.io.IOException;

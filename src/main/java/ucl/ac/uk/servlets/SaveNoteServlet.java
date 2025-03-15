@@ -7,7 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import ucl.ac.uk.main.Folder;
+import ucl.ac.uk.classes.Folder;
 import ucl.ac.uk.model.Model;
 import ucl.ac.uk.model.ModelFactory;
 
