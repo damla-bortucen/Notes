@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="ucl.ac.uk.classes.Note" %>
+<%@ page import="ucl.ac.uk.classes.Image" %>
 <%@ page import="java.util.Set" %>
 
 <html>
@@ -34,16 +35,16 @@
 
         <div class="form-group">
             <label for="content">Make Changes:</label>
-            <textarea class="form-control" rows="10" id="content" name="content"><%= noteToEdit.getContent() %></textarea>
+            <textarea class="form-control" rows="5" id="content" name="content"><%= noteToEdit.getContent() %></textarea>
         </div>
 
         <h3>Current Image:</h3>
             <div>
                 <%
-                    String imagePath = noteToEdit.getImagePath();
-                    if (imagePath != null && !imagePath.isEmpty()) {
+                    Image image = noteToEdit.getImage();
+                    if (image != null) {
                 %>
-                        <img src="<%= imagePath %>">
+                        <img src="<%= image.getImageName() %>">
                         <p>Currently selected image</p>
                         <label for="removeImage">Remove current image</label>
                         <input type="checkbox" id="removeImage" name="removeImage">

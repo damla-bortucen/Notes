@@ -11,7 +11,7 @@
     <jsp:include page="/meta.jsp"/>
     <style>
         .scrollable-list {
-            max-height: 30vh; /*30% of the page*/
+            max-height: 25vh; /*25% of the page*/
             overflow-y: auto; /*scrollable if too many notes*/
         }
         .button-container {
@@ -48,7 +48,7 @@
     </form>
 
     <h3>Folders</h3>
-    <ul class="list-group">
+    <ul class="list-group scrollable-list">
         <%
             if (currentFolder != null) {
                 // Display subfolders

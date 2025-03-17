@@ -9,14 +9,14 @@ public class Note extends Item
 {
     private String content;
     private Set<String> categories;
-    private String imagePath;
+    private Image image;
 
     public Note()
     {
         super("", ""); // default values for id and name
         this.content = "";
         this.categories = new HashSet<>();
-        this.imagePath = null;
+        this.image = null;
     }
 
     public String getContent() {return content;}
@@ -47,7 +47,7 @@ public class Note extends Item
 
     public void removeCategory(String category) {categories.remove(category);}
 
-    public String getImagePath() {return imagePath;}
+    public Image getImage() {return image;}
 
-    public void setImagePath(String imagePath) {this.imagePath = imagePath;}
+    public void setImage(Image image) {this.image = image;}
 }

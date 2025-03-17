@@ -43,7 +43,7 @@ public class UpdateNoteServlet extends HttpServlet
 
         String removeImage = request.getParameter("removeImage");
         if (removeImage != null) {
-            model.removeImage(noteId);
+            model.removeImage(model.getNote(noteId));
         }
 
         model.updateNote(noteId, name, content, newCategories, imagePart);

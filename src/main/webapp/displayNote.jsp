@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="ucl.ac.uk.classes.Note" %>
+<%@ page import="ucl.ac.uk.classes.Image" %>
 <%@ page import="java.util.Set" %>
 
 <html lang="en">
@@ -27,10 +28,11 @@
                 <p><strong>Content:</strong><br><%= note.formatContent().replace("\n", "<br>") %></p>
 
         <%
-                String imagePath = note.getImagePath();
-                if (imagePath != null && !imagePath.isEmpty()) {
+                Image image = note.getImage();
+                if (image != null) {
+                    System.out.println(image.getImageName());
         %>
-                    <img src="<%= imagePath %>">
+                    <img src="<%= image.getImageName() %>" width="300" alt="<%= image.getImageName() %>">
         <%      } %>
 
         <p><strong>Categories:</strong></p>

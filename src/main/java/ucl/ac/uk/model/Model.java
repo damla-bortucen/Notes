@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.Part;
 import ucl.ac.uk.classes.Folder;
 import ucl.ac.uk.classes.Note;
+import ucl.ac.uk.classes.Image;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +16,8 @@ public class Model
     private Folder rootFolder;
     private static final String FILE_PATH = "data/notes.json";
     private static final String CATEGORIES_FILE_PATH = "data/categories.json";
-    private static final String IMAGES_PATH = "data/images/";
+    private static final String IMAGES_PATH = "src/main/webapp/";
+    //TODO - figure out where to store images so that accessible in webapp
     private Set<String> categories; // category -> noteID
 
     public Model() {
@@ -119,9 +121,9 @@ public class Model
             newNote.setParentId(folderId);
             newNote.setCategories(categories);
 
-            if (imagePart!=null) {
-                String imagePath = saveImage(imagePart);
-                newNote.setImagePath(imagePath);
+            if (imagePart!=null && imagePart.getSize() > 0) {
+                Image image = saveImage(imagePart);
+                newNote.setImage(image);
             }
 
             folder.addNote(newNote);
@@ -129,7 +131,7 @@ public class Model
         }
     }
 
-    private String saveImage(Part imagePart)
+    private Image saveImage(Part imagePart)
     {
         try {
             String imageName = imagePart.getSubmittedFileName();
@@ -138,7 +140,9 @@ public class Model
 
             String filePath = absoluteDir + File.separator + imageName;
             imagePart.write(filePath);
-            return (filePath);
+
+            Image image = new Image(imageName, filePath);
+            return (image);
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Error saving image" + e.getMessage());
@@ -164,23 +168,24 @@ public class Model
             note.setCategories(newCategories);
         }
 
-        if (imagePart != null) {
-            String imagePath = saveImage(imagePart);
+        if (imagePart != null && imagePart.getSize() > 0) {
+            Image image = saveImage(imagePart);
             // delete old image
-            removeImage(note.getId());
-            note.setImagePath(imagePath);
+            removeImage(note);
+            note.setImage(image);
         }
 
         saveData();
     }
 
-    public void removeImage(String noteId) {
-        Note note = getNote(noteId);
-        String oldImagePath = note.getImagePath();
-        if (oldImagePath != null) {
-            File oldImageFile = new File(oldImagePath);
-            oldImageFile.delete();
-            note.setImagePath(null);
+    public void removeImage(Note note) {
+        Image oldImage = note.getImage();
+        if (oldImage != null) {
+            File oldImageFile = new File(oldImage.getImagePath());
+            if (oldImageFile.exists()) {
+                oldImageFile.delete();
+                note.setImage(null);
+            }
         }
     }
 
@@ -192,8 +197,8 @@ public class Model
             if (parentFolder != null) {
                 parentFolder.removeNote(noteId);
             }
-            if (noteToDelete.getImagePath() != null) {
-                removeImage(noteToDelete.getId());
+            if (noteToDelete.getImage() != null) {
+                removeImage(noteToDelete);
             }
         }
         saveData();
