@@ -36,16 +36,14 @@
         <%      } %>
 
         <p><strong>Categories:</strong></p>
-        <ul class="list-group">
+        <div class="container">
             <%
                 Set<String> noteCategories = note.getCategories();
 
                 if (!noteCategories.isEmpty()) {
                     for (String category : noteCategories) {
             %>
-                        <li class="list-group-item">
-                            <p><%= category %></p>
-                        </li>
+                        <span class="badge"><%= category %></span>
             <%      }
                 } else {
             %>
@@ -53,18 +51,10 @@
             <%
                 }
             %>
-        </ul>
-
-        <form action="editNote" method="post" style="display:inline;">
-            <input type="hidden" name="noteId" value="<%= note.getId() %>">
-            <button type="submit" class="btn btn-info">Edit</button>
-        </form>
-
-        <form action="deleteNote" method="post" style="display:inline;">
-            <input type="hidden" name="noteId" value="<%= note.getId() %>">
-            <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
-        <br><br> <a href="displayIndex?folderId=<%=note.getParentId()%>" class="btn btn-primary">Back</a>
+        </div><br>
+        <a href="displayIndex?folderId=<%=note.getParentId()%>" class="btn btn-primary">
+            <span class="glyphicon glyphicon-arrow-left"></span> Back
+        </a>
         <%
             } else {
         %>

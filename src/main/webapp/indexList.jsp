@@ -62,7 +62,9 @@
 
                             <form action="deleteFolder" method="post" style="display:inline;">
                                 <input type="hidden" name="folderId" value="<%= subfolder.getId() %>">
-                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span> Delete
+                                </button>
                             </form>
                         </li>
         <%          }
@@ -86,12 +88,16 @@
 
                             <form action="editNote" method="post" style="display:inline;">
                                 <input type="hidden" name="noteId" value="<%= note.getId() %>">
-                                <button type="submit" class="btn btn-info btn-sm">Edit</button>
+                                <button type="submit" class="btn btn-info btn-sm">
+                                    <span class="glyphicon glyphicon-pencil"></span> Edit
+                                </button>
                             </form>
 
                             <form action="deleteNote" method="post" style="display:inline;">
                                 <input type="hidden" name="noteId" value="<%= note.getId() %>">
-                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span> Delete
+                                </button>
                             </form>
                         </li>
         <%          }
@@ -118,7 +124,9 @@
         <%
             if (currentFolder.getParentId() != null) {
         %>
-                <a href="displayIndex?folderId=<%=currentFolder.getParentId()%>" class="btn btn-primary">Back</a>
+                <a href="displayIndex?folderId=<%=currentFolder.getParentId()%>" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-arrow-left"></span> Back
+                </a>
         <%  } %>
     </div>
 </div>

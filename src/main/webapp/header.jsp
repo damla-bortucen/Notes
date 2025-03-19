@@ -33,7 +33,9 @@
                 </ul>
             </li>
 
-            <li><a href="search.jsp">Search</a></li>
+            <li><a href="search.jsp">
+                <span class="glyphicon glyphicon-search"></span> Search
+            </a></li>
 
         </ul>
 
