@@ -15,8 +15,8 @@ import ucl.ac.uk.model.ModelFactory;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/displayIndex")
-public class DisplayIndexServlet extends HttpServlet
+@WebServlet("/displayFolder")
+public class DisplayFolderServlet extends HttpServlet
 {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -51,7 +51,7 @@ public class DisplayIndexServlet extends HttpServlet
 
 
         ServletContext context = getServletContext();
-        RequestDispatcher dispatch = context.getRequestDispatcher("/indexList.jsp");
+        RequestDispatcher dispatch = context.getRequestDispatcher("/folder.jsp");
         dispatch.forward(request, response);
 
     }

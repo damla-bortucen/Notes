@@ -16,7 +16,7 @@
 
 <div class="container">
     <h1>Damla&#39;s Notes</h1>
-    <form action="displayIndex" method="get">
+    <form action="displayFolder" method="get">
         <input type="hidden" name="folderId" value="root"/>
         <button class="btn btn-primary btn-lg" type="submit">View Notes</button>
     </form>

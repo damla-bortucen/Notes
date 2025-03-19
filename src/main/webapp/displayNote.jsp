@@ -52,7 +52,7 @@
                 }
             %>
         </div><br>
-        <a href="displayIndex?folderId=<%=note.getParentId()%>" class="btn btn-primary">
+        <a href="displayFolder?folderId=<%=note.getParentId()%>" class="btn btn-primary">
             <span class="glyphicon glyphicon-arrow-left"></span> Back
         </a>
         <%

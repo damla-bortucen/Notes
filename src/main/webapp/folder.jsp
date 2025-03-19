@@ -34,7 +34,7 @@
 
     <h1><%= title %></h1>
 
-    <form method="get" action="displayIndex">
+    <form method="get" action="displayFolder">
 
         <input type="hidden" name="folderId" value="<%= currentFolder.getId() %>">
 
@@ -57,7 +57,7 @@
                     for (Folder subfolder : sortedSubfolders) {
         %>
                         <li class="list-group-item">
-                            <p><a href="displayIndex?folderId=<%= subfolder.getId() %>"><%= subfolder.getName() %></a></p>
+                            <p><a href="displayFolder?folderId=<%= subfolder.getId() %>"><%= subfolder.getName() %></a></p>
                             <p>Created: <%= subfolder.getDateTime() %></p>
 
                             <form action="deleteFolder" method="post" style="display:inline;">
@@ -124,7 +124,7 @@
         <%
             if (currentFolder.getParentId() != null) {
         %>
-                <a href="displayIndex?folderId=<%=currentFolder.getParentId()%>" class="btn btn-primary">
+                <a href="displayFolder?folderId=<%=currentFolder.getParentId()%>" class="btn btn-primary">
                     <span class="glyphicon glyphicon-arrow-left"></span> Back
                 </a>
         <%  } %>
