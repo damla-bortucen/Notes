@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import ucl.ac.uk.classes.Note;
 import ucl.ac.uk.model.Model;
 import ucl.ac.uk.model.ModelFactory;
 
@@ -23,14 +24,19 @@ public class AddItemServlet extends HttpServlet
         request.setAttribute("folderId", folderId);
         request.setAttribute("itemType", itemType);
 
-
         if (itemType.equals("note"))
         {
             Model model = ModelFactory.getModel();
+
             Set<String> categories = model.getCategories();
             request.setAttribute("categories", categories);
 
-            request.getRequestDispatcher("/takeNote.jsp").forward(request, response);
+            Note newNote = new Note();
+            request.setAttribute("note", newNote);
+
+            request.setAttribute("isNew", true); // move up later to be for both
+
+            request.getRequestDispatcher("/noteForm.jsp").forward(request, response);
 
         } else if (itemType.equals("folder"))
         {

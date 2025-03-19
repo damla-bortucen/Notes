@@ -18,20 +18,22 @@ import java.util.Set;
 public class EditNoteServlet extends HttpServlet
 {
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         String noteId = request.getParameter("noteId");
 
         Model model = ModelFactory.getModel();
 
         Note noteToEdit = model.getNote(noteId);
-        request.setAttribute("noteToEdit", noteToEdit);
+        request.setAttribute("note", noteToEdit);
 
         Set<String> categories = model.getCategories();
-        request.setAttribute("categories", categories);
+        request.setAttribute("categories", model.getCategories());
+
+        request.setAttribute("isNew", false);
 
         ServletContext context = getServletContext();
-        RequestDispatcher dispatch = context.getRequestDispatcher("/editNote.jsp");
+        RequestDispatcher dispatch = context.getRequestDispatcher("/noteForm.jsp");
         dispatch.forward(request, response);
     }
 }

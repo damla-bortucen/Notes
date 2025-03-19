@@ -86,7 +86,7 @@
                             <p><a href="displayNote?noteId=<%= note.getId() %>"><%= note.getName() %></a></p>
                             <p>Created: <%= note.getDateTime() %></p>
 
-                            <form action="editNote" method="post" style="display:inline;">
+                            <form action="editNote" method="get" style="display:inline;">
                                 <input type="hidden" name="noteId" value="<%= note.getId() %>">
                                 <button type="submit" class="btn btn-info btn-sm">
                                     <span class="glyphicon glyphicon-pencil"></span> Edit

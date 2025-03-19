@@ -29,11 +29,13 @@ public class SaveNoteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         String folderId = request.getParameter("folderId");
+        String noteId = request.getParameter("noteId");
         String noteName = request.getParameter("noteName");
         String noteContent = request.getParameter("content");
         String[] selectedCategories = request.getParameterValues("noteCategories");
 
         Part imagePart = request.getPart("image");
+        boolean removeImage = request.getParameter("removeImage") != null;
 
         Set<String> categories = new HashSet<>();
         if (selectedCategories != null) {
@@ -43,7 +45,16 @@ public class SaveNoteServlet extends HttpServlet {
         Model model = ModelFactory.getModel();
         Folder folder = model.getFolder(folderId);
 
-        model.createNote(noteName, noteContent, folderId, categories, imagePart);
+        if (noteId == null) {
+            // NEW NOTE
+            model.createNote(noteName, noteContent, folderId, categories, imagePart);
+        } else {
+            // EDITING AN EXISTING NOTE
+            if (removeImage) {
+                model.removeImage(model.getNote(noteId));
+            }
+            model.updateNote(noteId, noteName, noteContent, categories, imagePart);
+        }
 
         ServletContext context = getServletContext();
         RequestDispatcher dispatch = context.getRequestDispatcher("/index.jsp");

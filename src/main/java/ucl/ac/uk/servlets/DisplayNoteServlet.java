@@ -19,10 +19,10 @@ public class DisplayNoteServlet extends HttpServlet
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        String folderId = request.getParameter("noteId");
+        String noteId = request.getParameter("noteId");
 
         Model model = ModelFactory.getModel();
-        Note note = model.getNote(folderId);
+        Note note = model.getNote(noteId);
 
         request.setAttribute("note", note);
 
