@@ -126,8 +126,8 @@
                 <span class="glyphicon glyphicon-plus"></span> Add
             </button>
             <ul class="dropdown-menu">
-                <li><a href="addItem?folderId=<%= currentFolder.getId() %>&itemType=note">Add Note</a></li>
-                <li><a href="addItem?folderId=<%= currentFolder.getId() %>&itemType=folder">Add Folder</a></li>
+                <li><a href="addItem?parentFolderId=<%= currentFolder.getId() %>&itemType=note">Add Note</a></li>
+                <li><a href="addItem?parentFolderId=<%= currentFolder.getId() %>&itemType=folder">Add Folder</a></li>
             </ul>
         </div>
 

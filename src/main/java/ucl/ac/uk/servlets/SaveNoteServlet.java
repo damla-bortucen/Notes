@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
-import ucl.ac.uk.classes.Folder;
 import ucl.ac.uk.model.Model;
 import ucl.ac.uk.model.ModelFactory;
 
@@ -43,8 +42,8 @@ public class SaveNoteServlet extends HttpServlet {
         }
 
         Model model = ModelFactory.getModel();
-        Folder folder = model.getFolder(folderId);
 
+        System.out.println(noteId);
         if (noteId == null) {
             // NEW NOTE
             model.createNote(noteName, noteContent, folderId, categories, imagePart);

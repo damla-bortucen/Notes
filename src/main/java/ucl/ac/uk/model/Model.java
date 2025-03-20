@@ -113,12 +113,14 @@ public class Model
     public void createNote(String noteName, String noteContent, String folderId, Set<String> categories, Part imagePart)
     {
         Folder folder = getFolder(folderId);
+        System.out.println(folder);
         if (folder != null) {
             Note newNote = new Note();
             newNote.setName(noteName);
             newNote.setContent(noteContent);
             newNote.setParentId(folderId);
             newNote.setCategories(categories);
+            System.out.println(newNote);
 
             if (imagePart!=null && imagePart.getSize() > 0) {
                 Image image = saveImage(imagePart);
