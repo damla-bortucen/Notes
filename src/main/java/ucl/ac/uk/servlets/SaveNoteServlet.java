@@ -43,7 +43,6 @@ public class SaveNoteServlet extends HttpServlet {
 
         Model model = ModelFactory.getModel();
 
-        System.out.println(noteId);
         if (noteId == null) {
             // NEW NOTE
             model.createNote(noteName, noteContent, folderId, categories, imagePart);
