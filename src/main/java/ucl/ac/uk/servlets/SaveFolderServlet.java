@@ -20,16 +20,23 @@ public class SaveFolderServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         String parentFolderId = request.getParameter("parentFolderId");
+        String folderId = request.getParameter("folderId");
         String folderName = request.getParameter("folderName");
 
         Model model = ModelFactory.getModel();
         Folder parent = model.getFolder(parentFolderId);
 
-        Folder folder = new Folder();
-        folder.setName(folderName);
-        folder.setParentId(parentFolderId);
+        if (folderId == null || folderId.isEmpty()) {
+            Folder folder = new Folder();
+            folder.setName(folderName);
+            folder.setParentId(parentFolderId);
+            model.addFolder(folder, parent);
+        } else {
+            Folder folderToUpdate = model.getFolder(folderId);
+            model.updateFolder(folderToUpdate, folderName);
+        }
 
-        model.addFolder(folder, parent);
+
 
         ServletContext context = getServletContext();
         RequestDispatcher dispatch = context.getRequestDispatcher("/index.jsp");

@@ -33,6 +33,16 @@
     %>
 
     <h1><%= title %></h1>
+    <%
+        if (currentFolder.getParentId() != null) {
+    %>
+        <form action="editFolder" method="get">
+            <input type="hidden" name="folderId" value="<%= currentFolder.getId() %>">
+            <button type="submit" class="btn btn-info btn-sm">
+                <span class="glyphicon glyphicon-pencil"></span> Edit Folder
+            </button>
+        </form>
+    <% } %>
 
     <form method="get" action="displayFolder">
 

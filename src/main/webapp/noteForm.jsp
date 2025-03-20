@@ -24,7 +24,7 @@
     <h2>Start Taking Notes:</h2>
     <form method="post" action="/saveNote" enctype="multipart/form-data">
 
-        <input type="hidden" name="folderId" value="<%= request.getParameter("folderId") %>">
+        <input type="hidden" name="folderId" value="<%= request.getParameter("parentFolderId") %>">
 
         <% if (!isNew) { %>
             <input type="hidden" name="noteId" value="<%= note.getId() %>">

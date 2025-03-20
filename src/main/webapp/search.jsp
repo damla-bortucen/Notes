@@ -58,7 +58,7 @@
                 {
         %>
                     <li class="list-group-item">
-                        <p><a href="displayIndex?folderId=<%= folder.getId() %>"><%= folder.getName() %></a></p>
+                        <p><a href="displayFolder?folderId=<%= folder.getId() %>"><%= folder.getName() %></a></p>
                     </li>
         <%
                 }

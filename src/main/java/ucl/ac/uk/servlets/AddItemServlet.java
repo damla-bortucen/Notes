@@ -21,8 +21,9 @@ public class AddItemServlet extends HttpServlet
         String folderId = request.getParameter("folderId");
         String itemType = request.getParameter("itemType");
 
-        request.setAttribute("folderId", folderId);
+        request.setAttribute("parentFolderId", folderId);
         request.setAttribute("itemType", itemType);
+        request.setAttribute("isNew", true);
 
         if (itemType.equals("note"))
         {
@@ -34,13 +35,11 @@ public class AddItemServlet extends HttpServlet
             Note newNote = new Note();
             request.setAttribute("note", newNote);
 
-            request.setAttribute("isNew", true); // move up later to be for both
-
             request.getRequestDispatcher("/noteForm.jsp").forward(request, response);
 
         } else if (itemType.equals("folder"))
         {
-            request.getRequestDispatcher("/addFolder.jsp").forward(request, response);
+            request.getRequestDispatcher("/folderForm.jsp").forward(request, response);
         }
 
     }

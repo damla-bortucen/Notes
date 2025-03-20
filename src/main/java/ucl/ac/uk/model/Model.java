@@ -17,7 +17,6 @@ public class Model
     private static final String FILE_PATH = "data/notes.json";
     private static final String CATEGORIES_FILE_PATH = "data/categories.json";
     private static final String IMAGES_PATH = "src/main/webapp/";
-    //TODO - figure out where to store images so that accessible in webapp
     private Set<String> categories; // category -> noteID
 
     public Model() {
@@ -219,6 +218,11 @@ public class Model
                 saveData();
             }
         }
+    }
+
+    public void updateFolder(Folder folder, String newName) {
+        folder.setName(newName);
+        saveData();
     }
 
     public Set<Note> getNotesByCategory(String category)
