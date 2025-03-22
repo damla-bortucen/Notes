@@ -1,12 +1,11 @@
 package ucl.ac.uk.servlets;
 
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import ucl.ac.uk.classes.Note;
 import ucl.ac.uk.model.Model;
 import ucl.ac.uk.model.ModelFactory;
 
@@ -20,10 +19,12 @@ public class DeleteNoteServlet extends HttpServlet
         String noteId = request.getParameter("noteId");
 
         Model model = ModelFactory.getModel();
+
+        Note note = model.getNote(noteId);
+        String parentId = note.getParentId();
+
         model.deleteNote(noteId);
 
-        ServletContext context = getServletContext();
-        RequestDispatcher dispatch = context.getRequestDispatcher("/index.jsp");
-        dispatch.forward(request, response);
+        response.sendRedirect("displayFolder?folderId=" + parentId);
     }
 }

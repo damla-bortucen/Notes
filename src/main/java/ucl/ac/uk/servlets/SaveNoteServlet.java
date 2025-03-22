@@ -1,7 +1,5 @@
 package ucl.ac.uk.servlets;
 
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -54,9 +52,6 @@ public class SaveNoteServlet extends HttpServlet {
             model.updateNote(noteId, noteName, noteContent, categories, imagePart);
         }
 
-        ServletContext context = getServletContext();
-        RequestDispatcher dispatch = context.getRequestDispatcher("/index.jsp");
-        dispatch.forward(request, response);
-
+        response.sendRedirect("displayFolder?folderId=" + folderId);
     }
 }

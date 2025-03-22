@@ -1,12 +1,11 @@
 package ucl.ac.uk.servlets;
 
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import ucl.ac.uk.classes.Folder;
 import ucl.ac.uk.model.Model;
 import ucl.ac.uk.model.ModelFactory;
 
@@ -20,10 +19,11 @@ public class DeleteFolderServlet extends HttpServlet
         String folderId = request.getParameter("folderId");
 
         Model model = ModelFactory.getModel();
+
+        Folder folder = model.getFolder(folderId);
+        String parentId = folder.getParentId();
         model.deleteFolder(folderId);
 
-        ServletContext context = getServletContext();
-        RequestDispatcher dispatch = context.getRequestDispatcher("/index.jsp");
-        dispatch.forward(request, response);
+        response.sendRedirect("displayFolder?folderId=" + parentId);
     }
 }
