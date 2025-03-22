@@ -19,6 +19,15 @@
             gap: 10px; /* Adjust spacing */
             align-items: center;
         }
+        .container {
+            padding-bottom: 60px; /* enough space for the fixed footer */
+        }
+        .dropdown-right .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-left: 0.25rem;
+            position: absolute;
+        }
     </style>
 </head>
 
@@ -85,7 +94,7 @@
     </ul>
 
     <h3>Notes</h3>
-    <ul class="list-group scrollable-list"">
+    <ul class="list-group scrollable-list">
         <%
                 // Display notes
                 List<Note> sortedNotes = (List<Note>) request.getAttribute("sortedNotes");
@@ -121,7 +130,7 @@
     </ul>
 
     <div class="button-container">
-        <div class="dropdown">
+        <div class="dropdown dropdown-right">
             <button class="btn btn-success" type="button" data-toggle="dropdown">
                 <span class="glyphicon glyphicon-plus"></span> Add
             </button>

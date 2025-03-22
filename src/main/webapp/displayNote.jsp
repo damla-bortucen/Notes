@@ -9,12 +9,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Note Display</title>
     <jsp:include page="/meta.jsp"/>
+    <style>
+        .container .main-container{
+            padding-bottom: 60px; /* enough space for the fixed footer */
+        }
+    </style>
 </head>
 
 <body>
 <jsp:include page="/header.jsp"/>
 
-    <div class="container">
+    <div class="container main-container">
         <%
             // Retrieve the note from the request attribute
             Note note = (Note) request.getAttribute("note");

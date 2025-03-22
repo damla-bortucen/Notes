@@ -26,6 +26,7 @@ public class EditNoteServlet extends HttpServlet
 
         Note noteToEdit = model.getNote(noteId);
         request.setAttribute("note", noteToEdit);
+        request.setAttribute("parentFolderId", noteToEdit.getParentId());
 
         Set<String> categories = model.getCategories();
         request.setAttribute("categories", model.getCategories());

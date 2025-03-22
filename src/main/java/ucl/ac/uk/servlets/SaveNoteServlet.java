@@ -42,10 +42,10 @@ public class SaveNoteServlet extends HttpServlet {
         Model model = ModelFactory.getModel();
 
         if (noteId == null) {
-            // NEW NOTE
+            // New note
             model.createNote(noteName, noteContent, folderId, categories, imagePart);
         } else {
-            // EDITING AN EXISTING NOTE
+            // Editing an existing note
             if (removeImage) {
                 model.removeImage(model.getNote(noteId));
             }

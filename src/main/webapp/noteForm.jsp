@@ -15,6 +15,11 @@
     <meta charset="UTF-8">
     <title>Add Notes</title>
     <jsp:include page="/meta.jsp"/>
+    <style>
+        .container {
+            padding-bottom: 60px; /* enough space for the fixed footer */
+        }
+    </style>
 </head>
 
 <body>
@@ -24,7 +29,7 @@
     <h2>Start Taking Notes:</h2>
     <form method="post" action="/saveNote" enctype="multipart/form-data">
 
-        <input type="hidden" name="folderId" value="<%= request.getParameter("parentFolderId") %>">
+        <input type="hidden" name="folderId" value="<%= request.getAttribute("parentFolderId") %>">
 
         <% if (!isNew) { %>
             <input type="hidden" name="noteId" value="<%= note.getId() %>">
@@ -78,6 +83,6 @@
     </form>
 </div>
 
-<!-- jsp:include page="/footer.jsp" -->
+<jsp:include page="/footer.jsp"/>
 </body>
 </html>
