@@ -1,7 +1,5 @@
 package ucl.ac.uk.servlets;
 
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -31,15 +29,13 @@ public class SaveFolderServlet extends HttpServlet
             folder.setName(folderName);
             folder.setParentId(parentFolderId);
             model.addFolder(folder, parent);
+
+            response.sendRedirect("displayFolder?folderId=" + parentFolderId);
         } else {
             Folder folderToUpdate = model.getFolder(folderId);
             model.updateFolder(folderToUpdate, folderName);
+
+            response.sendRedirect("displayFolder?folderId=" + folderId);
         }
-
-
-
-        ServletContext context = getServletContext();
-        RequestDispatcher dispatch = context.getRequestDispatcher("/index.jsp");
-        dispatch.forward(request, response);
     }
 }

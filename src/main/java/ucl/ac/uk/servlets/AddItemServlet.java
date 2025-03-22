@@ -18,10 +18,10 @@ public class AddItemServlet extends HttpServlet
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        String folderId = request.getParameter("folderId");
+        String parentFolderId = request.getParameter("parentFolderId");
         String itemType = request.getParameter("itemType");
 
-        request.setAttribute("parentFolderId", folderId);
+        request.setAttribute("parentFolderId", parentFolderId);
         request.setAttribute("itemType", itemType);
         request.setAttribute("isNew", true);
 
