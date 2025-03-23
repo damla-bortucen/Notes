@@ -60,6 +60,14 @@
         <a href="displayFolder?folderId=<%=note.getParentId()%>" class="btn btn-primary">
             <span class="glyphicon glyphicon-arrow-left"></span> Back
         </a>
+
+        <form action="editNote" method="get" style="display:inline;">
+            <input type="hidden" name="noteId" value="<%= note.getId() %>">
+            <button type="submit" class="btn btn-info">
+                <span class="glyphicon glyphicon-pencil"></span> Edit
+            </button>
+        </form>
+
         <%
             } else {
         %>

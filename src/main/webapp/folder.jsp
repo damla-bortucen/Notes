@@ -77,15 +77,20 @@
                     for (Folder subfolder : sortedSubfolders) {
         %>
                         <li class="list-group-item">
-                            <p><a href="displayFolder?folderId=<%= subfolder.getId() %>"><%= subfolder.getName() %></a></p>
-                            <p>Created: <%= subfolder.getDateTime() %></p>
-
-                            <form action="deleteFolder" method="post" style="display:inline;">
-                                <input type="hidden" name="folderId" value="<%= subfolder.getId() %>">
-                                <button type="submit" class="btn btn-danger btn-sm">
-                                    <span class="glyphicon glyphicon-trash"></span> Delete
-                                </button>
-                            </form>
+                            <div class="row">
+                                <div class="col-xs-9">
+                                    <p><a href="displayFolder?folderId=<%= subfolder.getId() %>"><%= subfolder.getName() %></a></p>
+                                    <p class="text-muted">Created: <%= subfolder.getDateTime()%></p>
+                                </div>
+                                <div class="col-xs-3 text-right">
+                                    <form action="deleteFolder" method="post" style="display:inline;">
+                                        <input type="hidden" name="folderId" value="<%= subfolder.getId() %>">
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <span class="glyphicon glyphicon-trash"></span> Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
                         </li>
         <%          }
                 } else {
@@ -103,22 +108,20 @@
                     for (Note note : sortedNotes) {
         %>
                         <li class="list-group-item">
-                            <p><a href="displayNote?noteId=<%= note.getId() %>"><%= note.getName() %></a></p>
-                            <p>Created: <%= note.getDateTime() %></p>
-
-                            <form action="editNote" method="get" style="display:inline;">
-                                <input type="hidden" name="noteId" value="<%= note.getId() %>">
-                                <button type="submit" class="btn btn-info btn-sm">
-                                    <span class="glyphicon glyphicon-pencil"></span> Edit
-                                </button>
-                            </form>
-
-                            <form action="deleteNote" method="post" style="display:inline;">
-                                <input type="hidden" name="noteId" value="<%= note.getId() %>">
-                                <button type="submit" class="btn btn-danger btn-sm">
-                                    <span class="glyphicon glyphicon-trash"></span> Delete
-                                </button>
-                            </form>
+                            <div class="row">
+                                <div class="col-xs-9">
+                                    <p><a href="displayNote?noteId=<%= note.getId() %>"><%= note.getName() %></a></p>
+                                    <p class="text-muted">Created: <%= note.getDateTime() %></p>
+                                </div>
+                                <div class="col-xs-3 text-right">
+                                    <form action="deleteNote" method="post">
+                                        <input type="hidden" name="noteId" value="<%= note.getId() %>">
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <span class="glyphicon glyphicon-trash"></span> Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
                         </li>
         <%          }
                 } else {
