@@ -42,6 +42,7 @@ public class DisplayFolderServlet extends HttpServlet
         if (sort == null) {
             sort = "alpha"; // Default sort if none is specified
         }
+        request.setAttribute("sort", sort);
 
         List<Note> sortedNotes = model.sortNotes(sort, folder.getNotes());
         request.setAttribute("sortedNotes", sortedNotes);

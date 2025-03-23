@@ -39,6 +39,7 @@
     <%
         String title = (String) request.getAttribute("title");
         Folder currentFolder = (Folder) request.getAttribute("currentFolder");
+        String sort = (String) request.getAttribute("sort");
     %>
 
     <h1><%= title %></h1>
@@ -59,9 +60,9 @@
 
         <label for="sort">Sort By:</label>
         <select class="form-select" name="sort" id="sort">
-            <option value="alpha">Alphabetical</option>
-            <option value="newest">Newest to Oldest</option>
-            <option value="oldest">Oldest to Newest</option>
+            <option value="alpha" <%= "alpha".equals(sort) ? "selected" : "" %>>Alphabetical</option>
+            <option value="newest" <%= "newest".equals(sort) ? "selected" : "" %>>Newest to Oldest</option>
+            <option value="oldest" <%= "oldest".equals(sort) ? "selected" : "" %>>Oldest to Newest</option>
         </select>
         <button type="submit" class="btn btn-primary btn-sm">Sort</button>
     </form>
