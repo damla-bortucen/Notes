@@ -301,6 +301,11 @@ public class Model
                     || categorySearch(note.getCategories(), searchTerm)) {
                 resultNotes.add(note);
             }
+            if (note.getImage() != null) {
+                if (note.getImage().getImageName().toLowerCase().contains(searchTerm)) {
+                    resultNotes.add(note);
+                }
+            }
         }
 
         // Recursively search in subfolders
